@@ -1,12 +1,12 @@
-const express = require('express');
-const cors = require('cors')
+const express = require("express");
+const cors = require("cors");
+const getUser = require("./controllers/getusers.controller");
 const app = express();
+const db = require("./connection");
 
 app.use(cors());
 app.use(express.json());
 
+app.get("/api/users", getUser);
 
-
-app.listen(5000, () => {
-    console.log("Listening on port 5000");
-});
+module.exports = app;

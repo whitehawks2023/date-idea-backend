@@ -1,4 +1,5 @@
 const ENV = process.env.NODE_ENV || 'development';
+const {Pool} = require('pg')
 
 require('dotenv').config({
     path: `${__dirname}/./.env.${ENV}`,
@@ -17,14 +18,17 @@ database.on('error', (error) => {
 })
 
 database.once('connected', () => {
-    console.log('Database Connected');
 })
 const app = express();
 
 app.use(express.json());
 
-app.listen(3000, () => {
-    console.log(`Server Started at ${3000}`)
-})
+
+const config = {};
+if (ENV === "production"){
+  config.connectionString = process.env.MONGO_URI;
+  config.max = 2;
+}
+module.exports = new Pool(config);
 
 
