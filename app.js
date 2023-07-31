@@ -7,6 +7,6 @@ const db = require("./connection");
 app.use(cors());
 app.use(express.json());
 
-app.get("/api/users", getUser);
+app.get("/api/user", getUser);
 
 module.exports = app;
