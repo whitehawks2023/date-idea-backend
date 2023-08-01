@@ -20,6 +20,26 @@ describe("GET - All users:", () => {
       });
   });
 });
+describe("GET - All user_ideas:", () => {
+  test("200: Responds with an users array of users objects:", () => {
+    return request(app)
+      .get("/api/user_ideas")
+      .expect(200)
+      .then(({ body }) => {
+        body.ideas.forEach((idea) => {
+          expect(idea).toHaveProperty("_id", expect.any(String));
+          expect(idea).toHaveProperty("username", expect.any(String));
+          expect(idea).toHaveProperty("location", expect.any(String));
+          expect(idea).toHaveProperty("description", expect.any(String));
+          expect(idea).toHaveProperty("date_type", expect.any(String));
+          expect(idea).toHaveProperty("price_pp", expect.any(Number));
+          expect(idea).toHaveProperty("opening_time", expect.any(String));
+          expect(idea).toHaveProperty("closing_time", expect.any(String));
+          expect(idea).toHaveProperty("img", expect.any(String));
+        });
+      });
+  });
+});
 
 afterAll(() => {
   db.end();
