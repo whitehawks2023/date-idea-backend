@@ -1,3 +1,4 @@
+const { AsyncLocalStorage } = require("async_hooks");
 const app = require("../app");
 const db = require("../connection");
 const fs = require("fs/promises");
@@ -12,9 +13,9 @@ describe("GET - All users:", () => {
       .then(({ body }) => {
         body.users.forEach((user) => {
           expect(user).toHaveProperty("_id", expect.any(String));
-          expect(user).toHaveProperty("firstName", expect.any(String));
-          expect(user).toHaveProperty("lastName", expect.any(String));
-          expect(user).toHaveProperty("age", expect.any(String));
+          expect(user).toHaveProperty("first_name", expect.any(String));
+          expect(user).toHaveProperty("last_name", expect.any(String));
+          expect(user).toHaveProperty("age", expect.any(Number));
         });
       });
   });

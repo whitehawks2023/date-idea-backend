@@ -18,6 +18,7 @@ database.on('error', (error) => {
 })
 
 database.once('connected', () => {
+  console.log('database name:', database.name);
 })
 const app = express();
 

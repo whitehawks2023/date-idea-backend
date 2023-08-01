@@ -6,10 +6,12 @@ const usersSchema = new mongoose.Schema({
   age: { type: Number, required: true },
 });
 
-const user = mongoose.model("user", usersSchema);
+const user = mongoose.model("users", usersSchema);
 
 const selectAllUsers = () => {
-  return user.find({}).limit(10);
+  return user.find({}).then((usersData) => {
+    return usersData
+  });
 };
 
 module.exports = selectAllUsers;
