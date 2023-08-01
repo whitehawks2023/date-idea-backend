@@ -21,7 +21,7 @@ describe("GET - All users:", () => {
   });
 });
 describe("GET - All user_ideas:", () => {
-  test("200: Responds with an users array of users objects:", () => {
+  test("200: Responds with ideas array of users idea objects:", () => {
     return request(app)
       .get("/api/user_ideas")
       .expect(200)
