@@ -1,5 +1,5 @@
 const db = require("../connection.js");
-const {user} = require("./users.model.js");
+const {user} = require("./selectUsers.model.js");
 
 const createUser = (first_name, last_name, age) => {
   return user

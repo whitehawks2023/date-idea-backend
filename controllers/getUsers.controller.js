@@ -1,7 +1,7 @@
 const db = require("../connection.js");
 const fs = require("fs/promises");
 
-const { selectAllUsers } = require("../models/users.model.js");
+const { selectAllUsers } = require("../models/selectUsers.model.js");
 
 const getUser = (req, res, next) => {
   selectAllUsers().then((users) => {

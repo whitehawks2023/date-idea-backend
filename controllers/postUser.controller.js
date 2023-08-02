@@ -1,4 +1,4 @@
-const createUser = require("../models/userPost.model");
+const createUser = require("../models/createUser.model");
 
 const postUser = (req, res, next) => {
   const { first_name, last_name, age } = req.body;

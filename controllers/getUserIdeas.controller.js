@@ -1,7 +1,7 @@
 const db = require("../connection.js");
 const fs = require("fs/promises");
 
-const selectAllUserIdeas = require("../models/userIdeas.model.js");
+const selectAllUserIdeas = require("../models/selectUserIdeas.model.js");
 
 const getUserIdeas = (req, res, next) => {
   selectAllUserIdeas().then((ideas) => {
