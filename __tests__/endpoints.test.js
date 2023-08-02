@@ -40,15 +40,15 @@ describe("GET - All user_ideas:", () => {
   });
 });
 
-describe("Post - create a new user:", () => {
+describe.only("Post - create a new user:", () => {
   test("201: Responds with created user:", () => {
     const testUser = {
-      username: "br12",
-      first_name: "banana",
-      last_name: "republic",
-      email: "br12@gmail.com",
-      age: 43,
-      avatar: "https://jkenfwkjfn",
+      username: "br14",
+      first_name: "lit",
+      last_name: "piazza",
+      email: "piazza@gmail.com",
+      age: 73,
+      avatar: "https://jkenfwfesajffn",
     };
     return request(app)
       .post("/api/user")
@@ -62,7 +62,7 @@ describe("Post - create a new user:", () => {
       });
   });
 });
-describe("Post - create a new user:", () => {
+describe("Post - create a new user idea:", () => {
   test("201: Responds with created user Idea:", () => {
     const testUserIdea = {
       username: "test",

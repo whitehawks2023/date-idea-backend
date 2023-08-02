@@ -1,3 +1,6 @@
+const db = require("../connection.js");
+const fs = require("fs/promises");
+
 const createUser = require("../models/createUser.model");
 
 const postUser = (req, res, next) => {
