@@ -43,8 +43,8 @@ describe("GET - All user_ideas:", () => {
 describe("Post - create a new user:", () => {
   test("201: Responds with created user:", () => {
     const testUser = {
-      first_name: "John",
-      last_name: "Pluto",
+      first_name: "test",
+      last_name: "test",
       age: 23,
     };
     return request(app)
@@ -56,6 +56,35 @@ describe("Post - create a new user:", () => {
         expect(body).toHaveProperty("first_name", expect.any(String));
         expect(body).toHaveProperty("last_name", expect.any(String));
         expect(body).toHaveProperty("age", expect.any(Number));
+      });
+  });
+});
+describe("Post - create a new user:", () => {
+  test("201: Responds with created user Idea:", () => {
+    const testUserIdea = {
+      username: "test",
+      location: "test",
+      description: "test",
+      date_type: "test",
+      price_pp: 0.00,
+      opening_time: "00:00",
+      closing_time: "00:00",
+      img: "url"
+    };
+    return request(app)
+      .post("/api/user_ideas")
+      .send(testUserIdea)
+      .expect(201)
+      .then(({ body }) => {
+        expect(body).toHaveProperty("_id", expect.any(String));
+        expect(body).toHaveProperty("username", expect.any(String));
+        expect(body).toHaveProperty("location", expect.any(String));
+        expect(body).toHaveProperty("description", expect.any(String));
+        expect(body).toHaveProperty("date_type", expect.any(String));
+        expect(body).toHaveProperty("price_pp", expect.any(Number));
+        expect(body).toHaveProperty("opening_time", expect.any(String));
+        expect(body).toHaveProperty("closing_time", expect.any(String));
+        expect(body).toHaveProperty("img", expect.any(String));
       });
   });
 });

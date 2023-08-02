@@ -11,12 +11,12 @@ const usersSchema = new mongoose.Schema({
   img: { type: String, required: true },
 });
 
-const user_ideas = mongoose.model("user_ideas", usersSchema);
+const userIdeas = mongoose.model("user_ideas", usersSchema);
 
-const selectAllUserIdeas = () => {
-  return user_ideas.find({}).then((userIdeasData) => {
+const selectUserIdeas = () => {
+  return userIdeas.find({}).then((userIdeasData) => {
     return userIdeasData
   });
 };
 
-module.exports = selectAllUserIdeas;
+module.exports = {selectUserIdeas, userIdeas};

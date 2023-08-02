@@ -1,10 +1,10 @@
 const db = require("../connection.js");
 const fs = require("fs/promises");
 
-const selectAllUserIdeas = require("../models/selectUserIdeas.model.js");
+const {selectUserIdeas} = require("../models/selectUserIdeas.model.js");
 
 const getUserIdeas = (req, res, next) => {
-  selectAllUserIdeas().then((ideas) => {
+  selectUserIdeas().then((ideas) => {
     res.status(200).json({
       ideas,
     });
