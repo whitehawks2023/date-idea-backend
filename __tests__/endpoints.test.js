@@ -43,7 +43,7 @@ describe("GET - All user_ideas:", () => {
 describe("Post - create a new unique user:", () => {
   test("201: Responds with created unique user:", () => {
     const testUser = {
-      username: "br15",
+      username: "br13",
       first_name: "lit",
       last_name: "piazza",
       email: "piazza@gmail.com",
@@ -88,6 +88,17 @@ describe("Post - create a new user idea:", () => {
         expect(body).toHaveProperty("opening_time", expect.any(String));
         expect(body).toHaveProperty("closing_time", expect.any(String));
         expect(body).toHaveProperty("img", expect.any(String));
+      });
+  });
+});
+
+describe("DELETE /api/user", () => {
+  test("Should delete a specified user", () => {
+    return request(app)
+      .delete("/api/user/br13")
+      .expect(204)
+      .then((response) => {
+        expect(response.body).toEqual({});
       });
   });
 });

@@ -11,6 +11,7 @@ const {
   handleCustomErrors,
   handleServerErrors,
 } = require("./errorHandler");
+const removeUser = require("./controllers/removeUser.controller");
 
 app.use(cors());
 app.use(express.json());
@@ -20,6 +21,8 @@ app.get("/api/user_ideas", getUserIdeas);
 
 app.post("/api/user", postUser);
 app.post("/api/user_ideas", postUserIdea);
+
+app.delete("/api/user/:username", removeUser)
 
 app.use(handleMongoDbErrors);
 app.use(handleCustomErrors);
