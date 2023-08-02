@@ -1,10 +1,15 @@
 const createUser = require("../models/createUser.model");
 
 const postUser = (req, res, next) => {
-  const { first_name, last_name, age } = req.body;
-  createUser(first_name, last_name, age).then((createdUser) => {
-    res.status(201).json(createdUser);
-  });
+  const { username, first_name, last_name, email, age, avatar } = req.body;
+  createUser(username, first_name, last_name, email, age, avatar)
+    .then((createdUser) => {
+      res.status(201).json(createdUser);
+    })
+    .catch((err) => {
+      console.log(err, 'err <----');
+      next(err);
+    });
 };
 
 module.exports = postUser;

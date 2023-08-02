@@ -43,9 +43,12 @@ describe("GET - All user_ideas:", () => {
 describe("Post - create a new user:", () => {
   test("201: Responds with created user:", () => {
     const testUser = {
-      first_name: "test",
-      last_name: "test",
-      age: 23,
+      username: "br12",
+      first_name: "banana",
+      last_name: "republic",
+      email: "br12@gmail.com",
+      age: 43,
+      avatar: "https://jkenfwkjfn",
     };
     return request(app)
       .post("/api/user")
@@ -66,10 +69,10 @@ describe("Post - create a new user:", () => {
       location: "test",
       description: "test",
       date_type: "test",
-      price_pp: 0.00,
+      price_pp: 0.0,
       opening_time: "00:00",
       closing_time: "00:00",
-      img: "url"
+      img: "url",
     };
     return request(app)
       .post("/api/user_ideas")
@@ -88,6 +91,23 @@ describe("Post - create a new user:", () => {
       });
   });
 });
+
+// describe("PATCH - updates the user info:", ()=> {
+//   test("200: Responds with updated user object", () => {
+//     const testPatch = {
+//       inc_votes: 1,
+//     }
+//     return request(app)
+//     .patch("/api/articles/1")
+//     .send(testPatch)
+//     .expect(200)
+//     .then(({body})=>{
+//       const { patchedArticle } = body;
+//       expect(patchedArticle).toHaveProperty("votes", expect.any(Number));
+//       expect(patchedArticle).toHaveProperty("article_id", expect.any(Number));
+//       expect(patchedArticle.votes).toBe(101)
+//     })
+//   });
 
 afterAll(() => {
   db.end();

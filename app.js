@@ -6,6 +6,11 @@ const postUser = require("./controllers/postUser.controller");
 const postUserIdea = require("./controllers/postUserIdea.controller");
 const app = express();
 const db = require("./connection");
+const {
+  handleMongoDbErrors,
+  handleCustomErrors,
+  handleServerErrors,
+} = require("./errorHandler");
 
 app.use(cors());
 app.use(express.json());
@@ -15,5 +20,9 @@ app.get("/api/user_ideas", getUserIdeas);
 
 app.post("/api/user", postUser);
 app.post("/api/user_ideas", postUserIdea);
+
+app.use(handleMongoDbErrors);
+app.use(handleCustomErrors);
+app.use(handleServerErrors);
 
 module.exports = app;
