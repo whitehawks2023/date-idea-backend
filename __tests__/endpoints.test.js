@@ -40,10 +40,10 @@ describe("GET - All user_ideas:", () => {
   });
 });
 
-describe.only("Post - create a new user:", () => {
-  test("201: Responds with created user:", () => {
+describe("Post - create a new unique user:", () => {
+  test("201: Responds with created unique user:", () => {
     const testUser = {
-      username: "br14",
+      username: "br15",
       first_name: "lit",
       last_name: "piazza",
       email: "piazza@gmail.com",

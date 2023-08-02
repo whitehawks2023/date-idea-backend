@@ -1,8 +1,9 @@
 const db = require("../connection.js");
-const { selectSingleUser } = require("./selectSingleUser.model.js");
+const { checkUserExists } = require("../utils/checkUserExists.js");
 const { user } = require("./selectUsers.model.js");
+
 const createUser = (username, first_name, last_name, email, age, avatar) => {
-  return selectSingleUser(username).then((usernameExist) => {
+  return checkUserExists(username).then((usernameExist) => {
     console.log(usernameExist, "evaluation");
     if (usernameExist) {
       return Promise.reject({
