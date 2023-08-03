@@ -7,7 +7,7 @@ require("jest-sorted");
 describe("GET - All users:", () => {
   test("200: Responds with an users array of users objects:", () => {
     return request(app)
-      .get("/api/user")
+      .get("/api/users")
       .expect(200)
       .then(({ body }) => {
         body.users.forEach((user) => {

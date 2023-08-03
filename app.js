@@ -19,7 +19,7 @@ const patchUser = require("./controllers/patchUser.controller");
 app.use(cors());
 app.use(express.json());
 
-app.get("/api/user", getUser);
+app.get("/api/users", getUser);
 app.get("/api/user_ideas", getUserIdeas);
 
 app.post("/api/user", postUser);
