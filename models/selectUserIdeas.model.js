@@ -7,7 +7,7 @@ const usersSchema = new mongoose.Schema(
     description: { type: String, required: true },
     date_type: { type: String, required: true },
     price: { type: Number, required: true },
-    longtitude: { type: Number, required: true },
+    longitude: { type: Number, required: true },
     latitude: { type: Number, required: true },
     opening_time: { type: String, required: true },
     closing_time: { type: String, required: true },
@@ -20,6 +20,7 @@ const userIdeas = mongoose.model("user_ideas", usersSchema);
 
 const selectUserIdeas = () => {
   return userIdeas.find({}).then((userIdeasData) => {
+    console.log(userIdeasData);
     return userIdeasData;
   });
 };

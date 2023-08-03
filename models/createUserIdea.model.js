@@ -8,7 +8,7 @@ const createUserIdea = (
   date_type,
   price,
   latitude,
-  longtitude,
+  longitude,
   opening_time,
   closing_time,
   img
@@ -21,7 +21,7 @@ const createUserIdea = (
       date_type,
       price,
       latitude,
-      longtitude,
+      longitude,
       opening_time,
       closing_time,
       img,

@@ -70,7 +70,7 @@ describe("Post - create a new user idea:", () => {
       date_type: "test",
       price: 0.0,
       latitude: 54.8957,
-      longtitude: 45.345,
+      longitude: 45.345,
       opening_time: "00:00",
       closing_time: "00:00",
       img: "url",
