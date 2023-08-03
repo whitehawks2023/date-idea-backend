@@ -50,7 +50,7 @@ describe("Post - create a new unique user:", () => {
       avatar: "https://jkenfwfesajffn",
     };
     return request(app)
-      .post("/api/user")
+      .post("/api/users")
       .send(testUser)
       .expect(201)
       .then(({ body }) => {
@@ -97,7 +97,7 @@ describe("Post - create a new user idea:", () => {
 describe("DELETE user", () => {
   test("Should delete a specified user", () => {
     return request(app)
-      .delete("/api/user/br13")
+      .delete("/api/users/br13")
       .expect(204)
       .then((response) => {
         expect(response.body).toEqual({});
@@ -122,7 +122,7 @@ describe("PATCH - updates the user info:", () => {
       last_name: "senior",
     };
     return request(app)
-      .patch("/api/user/br15")
+      .patch("/api/users/br15")
       .send(userPatch)
       .expect(200)
       .then(({ body }) => {
@@ -138,7 +138,7 @@ describe("PATCH - updates the user info:", () => {
       avatar: "https://www.google.com",
     };
     return request(app)
-      .patch("/api/user/br12")
+      .patch("/api/users/br12")
       .send(userPatch)
       .expect(200)
       .then(({ body }) => {

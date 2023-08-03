@@ -22,13 +22,13 @@ app.use(express.json());
 app.get("/api/users", getUser);
 app.get("/api/user_ideas", getUserIdeas);
 
-app.post("/api/user", postUser);
+app.post("/api/users", postUser);
 app.post("/api/user_ideas", postUserIdea);
 
-app.delete("/api/user/:username", removeUser)
+app.delete("/api/users/:username", removeUser)
 app.delete("/api/user_ideas/:_id", removeUserIdea)
 
-app.patch("/api/user/:username", patchUser)
+app.patch("/api/users/:username", patchUser)
 
 app.use(handleMongoDbErrors);
 app.use(handleCustomErrors);
