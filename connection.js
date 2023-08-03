@@ -30,6 +30,7 @@ if (ENV === "production"){
   config.connectionString = process.env.MONGO_URI;
   config.max = 2;
 }
+
 module.exports = new Pool(config);
 
 

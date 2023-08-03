@@ -20,7 +20,6 @@ const userIdeas = mongoose.model("user_ideas", usersSchema);
 
 const selectUserIdeas = () => {
   return userIdeas.find({}).then((userIdeasData) => {
-    console.log(userIdeasData);
     return userIdeasData;
   });
 };
