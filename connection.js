@@ -1,36 +1,32 @@
-const ENV = process.env.NODE_ENV || 'development';
-const {Pool} = require('pg')
+const ENV = process.env.NODE_ENV || "development";
+const { Pool } = require("pg");
+const express = require("express");
+const mongoose = require("mongoose");
 
-require('dotenv').config({
-    path: `${__dirname}/./.env.${ENV}`,
-  });
+require("dotenv").config({
+  path: `${__dirname}/./.env.${ENV}`,
+});
 
-
-const express = require('express');
-const mongoose = require('mongoose');
 const mongoString = process.env.MONGO_URI;
-
+console.log(typeof mongoString);
 mongoose.connect(mongoString);
 const database = mongoose.connection;
 
-database.on('error', (error) => {
-    console.log(error)
-})
+database.on("error", (error) => {
+  console.log(error);
+});
 
-database.once('connected', () => {
-  console.log('database name:', database.name);
-})
+database.once("connected", () => {
+  console.log("database name:", database.name);
+});
 const app = express();
 
 app.use(express.json());
 
-
 const config = {};
-if (ENV === "production"){
+if (ENV === "production") {
   config.connectionString = process.env.MONGO_URI;
   config.max = 2;
 }
 
 module.exports = new Pool(config);
-
-
