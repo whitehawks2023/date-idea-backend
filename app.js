@@ -14,6 +14,7 @@ const {
   handleCustomErrors,
   handleServerErrors,
 } = require("./errorHandler");
+const patchUser = require("./controllers/patchUser.controller");
 
 app.use(cors());
 app.use(express.json());
@@ -26,6 +27,8 @@ app.post("/api/user_ideas", postUserIdea);
 
 app.delete("/api/user/:username", removeUser)
 app.delete("/api/user_ideas/:_id", removeUserIdea)
+
+app.patch("/api/user/:username", patchUser)
 
 app.use(handleMongoDbErrors);
 app.use(handleCustomErrors);
