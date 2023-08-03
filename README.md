@@ -7,14 +7,14 @@ First you should run `npm i` to download the dependencies.
 ENDPOINTS:
 URL for Backend Render: https://rendezvous-backend.onrender.com/
 
-GET: /api/users
-GET: /api/user_ideas
+GET all users: /api/users
+GET all user ideas: /api/user_ideas
 
-POST: /api/users
-POST: /api/user_ideas
+POST new user: /api/users
+POST new user idea: /api/user_ideas
 
-DELETE: /api/users/:username
-DELETE: /api/user_ideas/:_id
+DELETE user: /api/users/:username
+DELETE user idea: /api/user_ideas/:_id
 
-PATCH: /api/users/:username
-PATCH: Currently Working on this endpoint...
+PATCH user: /api/users/:username
+PATCH user idea: Currently Working on this endpoint...
