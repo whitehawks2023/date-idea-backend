@@ -17,4 +17,4 @@ DELETE user: /api/users/:username
 DELETE user idea: /api/user_ideas/:_id
 
 PATCH user: /api/users/:username
-PATCH user idea: Currently Working on this endpoint...
+PATCH user idea: /api/user_ideas/:_id

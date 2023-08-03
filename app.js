@@ -6,6 +6,8 @@ const postUser = require("./controllers/postUser.controller");
 const postUserIdea = require("./controllers/postUserIdea.controller");
 const removeUser = require("./controllers/removeUser.controller");
 const removeUserIdea = require("./controllers/removeUserIdea.controller");
+const patchUser = require("./controllers/patchUser.controller");
+const patchUserIdea = require("./controllers/patchUserIdea.controller");
 
 const app = express();
 const db = require("./connection");
@@ -14,7 +16,6 @@ const {
   handleCustomErrors,
   handleServerErrors,
 } = require("./errorHandler");
-const patchUser = require("./controllers/patchUser.controller");
 
 app.use(cors());
 app.use(express.json());
@@ -29,6 +30,7 @@ app.delete("/api/users/:username", removeUser)
 app.delete("/api/user_ideas/:_id", removeUserIdea)
 
 app.patch("/api/users/:username", patchUser)
+app.patch("/api/user_ideas/:_id", patchUserIdea)
 
 app.use(handleMongoDbErrors);
 app.use(handleCustomErrors);

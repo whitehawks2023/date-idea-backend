@@ -147,6 +147,42 @@ describe("PATCH - updates the user info:", () => {
   });
 });
 
+describe("PATCH - updates the user's idea:", () => {
+  test("200: Responds with updated user idea object when only specified fields are changed", () => {
+    const userPatch = {
+      location: "test200",
+      description: "test200",
+      date_type: "test200",
+    };
+    return request(app)
+      .patch("/api/user_ideas/64cbad8d6b10fda44f035345")
+      .send(userPatch)
+      .expect(200)
+      .then(({ body }) => {
+        expect(body.acknowledged).toBe(true);
+      });
+  });
+
+  test("200: Responds with updated user idea object when all fields are changed", () => {
+    const userPatch = {
+      location: "test200",
+      description: "test200",
+      date_type: "test200",
+      price: 0.2,
+      opening_time: "00:02",
+      closing_time: "00:02",
+      img: "https://thisisatesturl.com",
+    };
+    return request(app)
+      .patch("/api/user_ideas/64cbb729506422a470e61d34")
+      .send(userPatch)
+      .expect(200)
+      .then(({ body }) => {
+        expect(body.acknowledged).toBe(true);
+      });
+  });
+});
+
 afterAll(() => {
   db.end();
 });
