@@ -19,6 +19,33 @@ describe("GET - All users:", () => {
       });
   });
 });
+
+describe.only("GET /api/users/:_id", () => {
+  test("Should return the user that corresponds to a given user id", () => {
+    return request(app)
+      .get("/api/users/64ca5a5573cc3ca03721c458")
+      .expect(200)
+      .then(({ body }) => {
+        expect(body).toHaveProperty("_id", expect.any(String));
+        expect(body).toHaveProperty("first_name", expect.any(String));
+        expect(body).toHaveProperty("last_name", expect.any(String));
+        expect(body).toHaveProperty("age", expect.any(Number));
+      });
+  });
+});
+
+describe("GET /api/users/notavalidroute", () => {
+  test("Should return 404 Not found when given a non-existent route", () => {
+    return request(app)
+      .get("/api/notavalidroute")
+      .expect(404)
+      .then(({ body }) => {
+        expect(body).toHaveProperty("msg");
+        expect(body.msg).toBe("Not found");
+      });
+  });
+});
+
 describe("GET - All user_ideas:", () => {
   test("200: Responds with ideas array of users idea objects:", () => {
     return request(app)
@@ -39,6 +66,26 @@ describe("GET - All user_ideas:", () => {
       });
   });
 });
+
+describe("GET /api/user_ideas/:_id", () => {
+  test("Should return idea that corresponds to a given idea id", () => {
+    return request(app)
+      .get("/api/user_ideas/64cbad8d6b10fda44f035345")
+      .expect(200)
+      .then(({ body }) => {
+        expect(body).toHaveProperty("_id", expect.any(String));
+        expect(body).toHaveProperty("username", expect.any(String));
+        expect(body).toHaveProperty("location", expect.any(String));
+        expect(body).toHaveProperty("description", expect.any(String));
+        expect(body).toHaveProperty("date_type", expect.any(String));
+        expect(body).toHaveProperty("price", expect.any(Number));
+        expect(body).toHaveProperty("opening_time", expect.any(String));
+        expect(body).toHaveProperty("closing_time", expect.any(String));
+        expect(body).toHaveProperty("img", expect.any(String));
+      });
+  });
+});
+
 describe("Post - create a new unique user:", () => {
   test("201: Responds with created unique user:", () => {
     const testUser = {

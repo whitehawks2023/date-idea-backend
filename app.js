@@ -16,24 +16,32 @@ const {
   handleCustomErrors,
   handleServerErrors,
 } = require("./errorHandler");
+const getUserIdeasById = require("./controllers/getUserIdeaById.controller");
+const getUserById = require("./controllers/getUserById.controller");
 
 app.use(cors());
 app.use(express.json());
 
 app.get("/api/users", getUser);
+app.get("/api/users/:_id", getUserById);
+app.get("/api/user_ideas/:_id", getUserIdeasById);
 app.get("/api/user_ideas", getUserIdeas);
 
 app.post("/api/users", postUser);
 app.post("/api/user_ideas", postUserIdea);
 
-app.delete("/api/users/:username", removeUser)
-app.delete("/api/user_ideas/:_id", removeUserIdea)
+app.delete("/api/users/:username", removeUser);
+app.delete("/api/user_ideas/:_id", removeUserIdea);
 
-app.patch("/api/users/:username", patchUser)
-app.patch("/api/user_ideas/:_id", patchUserIdea)
+app.patch("/api/users/:username", patchUser);
+app.patch("/api/user_ideas/:_id", patchUserIdea);
 
 app.use(handleMongoDbErrors);
 app.use(handleCustomErrors);
 app.use(handleServerErrors);
+
+app.all("*", (req, res) => {
+  res.status(404).send({ msg: "Not found" });
+});
 
 module.exports = app;
