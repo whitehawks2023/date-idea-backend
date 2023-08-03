@@ -87,7 +87,7 @@ describe("Post - create a new user idea:", () => {
         expect(body).toHaveProperty("date_type", expect.any(String));
         expect(body).toHaveProperty("price", expect.any(Number));
         expect(body).toHaveProperty("latitude", expect.any(Number));
-        expect(body).toHaveProperty("longtitude", expect.any(Number));
+        expect(body).toHaveProperty("longitude", expect.any(Number));
         expect(body).toHaveProperty("opening_time", expect.any(String));
         expect(body).toHaveProperty("closing_time", expect.any(String));
         expect(body).toHaveProperty("img", expect.any(String));
