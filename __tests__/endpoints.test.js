@@ -39,7 +39,6 @@ describe("GET - All user_ideas:", () => {
       });
   });
 });
-
 describe("Post - create a new unique user:", () => {
   test("201: Responds with created unique user:", () => {
     const testUser = {
@@ -91,11 +90,20 @@ describe("Post - create a new user idea:", () => {
       });
   });
 });
-
-describe("DELETE /api/user", () => {
+describe("DELETE user", () => {
   test("Should delete a specified user", () => {
     return request(app)
       .delete("/api/user/br13")
+      .expect(204)
+      .then((response) => {
+        expect(response.body).toEqual({});
+      });
+  });
+});
+describe("DELETE user_idea", () => {
+  test("Should delete a specified user idea, if the user is the owner of the post", () => {
+    return request(app)
+      .delete("/api/user_ideas/64cb61fa56978cba6c42dba0")
       .expect(204)
       .then((response) => {
         expect(response.body).toEqual({});

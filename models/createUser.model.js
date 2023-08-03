@@ -4,7 +4,6 @@ const { user } = require("./selectUsers.model.js");
 
 const createUser = (username, first_name, last_name, email, age, avatar) => {
   return checkUserExists(username).then((usernameExist) => {
-    console.log(usernameExist, "evaluation");
     if (usernameExist) {
       return Promise.reject({
         msg: "username is already taken",

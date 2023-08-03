@@ -4,6 +4,9 @@ const getUser = require("./controllers/getUsers.controller");
 const getUserIdeas = require("./controllers/getUserIdeas.controller");
 const postUser = require("./controllers/postUser.controller");
 const postUserIdea = require("./controllers/postUserIdea.controller");
+const removeUser = require("./controllers/removeUser.controller");
+const removeUserIdea = require("./controllers/removeUserIdea.controller");
+
 const app = express();
 const db = require("./connection");
 const {
@@ -11,7 +14,6 @@ const {
   handleCustomErrors,
   handleServerErrors,
 } = require("./errorHandler");
-const removeUser = require("./controllers/removeUser.controller");
 
 app.use(cors());
 app.use(express.json());
@@ -23,6 +25,7 @@ app.post("/api/user", postUser);
 app.post("/api/user_ideas", postUserIdea);
 
 app.delete("/api/user/:username", removeUser)
+app.delete("/api/user_ideas/:_id", removeUserIdea)
 
 app.use(handleMongoDbErrors);
 app.use(handleCustomErrors);
