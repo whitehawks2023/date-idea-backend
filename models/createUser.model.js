@@ -2,7 +2,15 @@ const db = require("../connection.js");
 const { checkUserExists } = require("../utils/checkUserExists.js");
 const { user } = require("./selectUsers.model.js");
 
-const createUser = (username, first_name, last_name, email, age, avatar) => {
+const createUser = (
+  username,
+  password,
+  first_name,
+  last_name,
+  email,
+  age,
+  avatar
+) => {
   return checkUserExists(username).then((usernameExist) => {
     if (usernameExist) {
       return Promise.reject({
@@ -13,6 +21,7 @@ const createUser = (username, first_name, last_name, email, age, avatar) => {
     return user
       .create({
         username,
+        password,
         first_name,
         last_name,
         email,

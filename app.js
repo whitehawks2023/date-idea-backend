@@ -23,7 +23,7 @@ app.use(cors());
 app.use(express.json());
 
 app.get("/api/users", getUser);
-app.get("/api/users/:_id", getUserById);
+app.get("/api/users/:_id/:password", getUserById);
 app.get("/api/user_ideas/:_id", getUserIdeasById);
 app.get("/api/user_ideas", getUserIdeas);
 

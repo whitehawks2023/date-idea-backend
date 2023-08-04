@@ -20,27 +20,68 @@ describe("GET - All users:", () => {
   });
 });
 
-describe.only("GET /api/users/:_id", () => {
-  test("Should return the user that corresponds to a given user id", () => {
-    return request(app)
-      .get("/api/users/64ca5a5573cc3ca03721c458")
-      .expect(200)
-      .then(({ body }) => {
-        expect(body).toHaveProperty("_id", expect.any(String));
-        expect(body).toHaveProperty("first_name", expect.any(String));
-        expect(body).toHaveProperty("last_name", expect.any(String));
-        expect(body).toHaveProperty("age", expect.any(Number));
-      });
-  });
-});
-
-describe("GET /api/users/notavalidroute", () => {
+describe("GET - Non existent route", () => {
   test("Should return 404 Not found when given a non-existent route", () => {
     return request(app)
       .get("/api/notavalidroute")
       .expect(404)
       .then(({ body }) => {
         expect(body).toHaveProperty("msg");
+        expect(body.msg).toBe("Not found");
+      });
+  });
+});
+
+describe("GET - Specific user information", () => {
+  test("Should return the user that corresponds to a given user id", () => {
+    return request(app)
+      .get("/api/users/64ca5a5573cc3ca03721c458/azzip")
+      .expect(200)
+      .then(({ body }) => {
+        expect(body).toHaveProperty("_id", expect.any(String));
+        expect(body).toHaveProperty("username", expect.any(String));
+        expect(body).toHaveProperty("password", expect.any(String));
+        expect(body).toHaveProperty("first_name", expect.any(String));
+        expect(body).toHaveProperty("last_name", expect.any(String));
+        expect(body).toHaveProperty("age", expect.any(Number));
+        expect(body).toHaveProperty("email", expect.any(String));
+        expect(body).toHaveProperty("avatar", expect.any(String));
+
+
+      });
+  });
+
+  test("Should respond with 404 Not found for a user _id that does not exist", () => {
+    return request(app)
+      .get("/api/users/6765")
+      .expect(404)
+      .then(({ body }) => {
+        expect(body.msg).toBe("Not found");
+      });
+  });
+
+  test("Should respond with 400 Bad request for an invalid user id", () => {
+    return request(app)
+      .get("/api/users/jfhd2222££$$$%%/banana")
+      .expect(400)
+      .then(({ body }) => {
+        expect(body.msg).toBe("Bad request");
+      });
+  });
+  test("Should respond with 400 Bad request for an incorrect password", () => {
+    return request(app)
+      .get("/api/users/64ca5a5573cc3ca03721c458/skyrim")
+      .expect(400)
+      .then(({ body }) => {
+        expect(body.msg).toBe("Bad request");
+      });
+  });
+
+  test("Should respond with 400 Bad request for an incorrect password", () => {
+    return request(app)
+      .get("/api/users/skyrim/azzip")
+      .expect(404)
+      .then(({ body }) => {
         expect(body.msg).toBe("Not found");
       });
   });
@@ -86,10 +127,22 @@ describe("GET /api/user_ideas/:_id", () => {
   });
 });
 
+// describe('GET /api/articles/:article_id/comments', () => {
+//   test("Should respond with 404 Not found for an article_id that does not exist", () => {
+//     return request(app)
+//       .get('/api/articles/76/comments')
+//       .expect(404)
+//       .then(({ body }) => {
+//         expect(body.msg).toBe('Not found')
+//       });
+//       });
+// });
+
 describe("Post - create a new unique user:", () => {
   test("201: Responds with created unique user:", () => {
     const testUser = {
       username: "br13",
+      password: "burgersarebetter",
       first_name: "lit",
       last_name: "piazza",
       email: "piazza@gmail.com",
@@ -102,9 +155,13 @@ describe("Post - create a new unique user:", () => {
       .expect(201)
       .then(({ body }) => {
         expect(body).toHaveProperty("_id", expect.any(String));
+        expect(body).toHaveProperty("username", expect.any(String));
+        expect(body).toHaveProperty("password", expect.any(String));
         expect(body).toHaveProperty("first_name", expect.any(String));
         expect(body).toHaveProperty("last_name", expect.any(String));
+        expect(body).toHaveProperty("email", expect.any(String));
         expect(body).toHaveProperty("age", expect.any(Number));
+        expect(body).toHaveProperty("avatar", expect.any(String));
       });
   });
 });

@@ -1,7 +1,9 @@
 const { user } = require("../models/selectUsers.model");
 
-const selectUserById = (_id) => {
-  return user.findOne({ _id }).then((singleUser) => {
+const selectUserById = (_id, password) => {
+  return user.findOne({ _id, password }).then((singleUser) => {
+    if (singleUser === null)
+      return Promise.reject({ customStatus: 400, msg: "Bad request" });
     return singleUser;
   });
 };
