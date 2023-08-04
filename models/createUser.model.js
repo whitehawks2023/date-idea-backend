@@ -11,9 +11,27 @@ const createUser = (
   age,
   avatar
 ) => {
-  if (username.length < 3 || password.length < 3) {
+  if (username.length < 3) {
     return Promise.reject({
-      msg: "username must be at least 3 characters long",
+      msg: `username cannot be blank and must be at least 3 characters long`,
+      customStatus: 400,
+    });
+  }
+  if (password.length < 3) {
+    return Promise.reject({
+      msg: `password cannot be blank and must be at least 3 characters long`,
+      customStatus: 400,
+    });
+  }
+  if (first_name.length < 3) {
+    return Promise.reject({
+      msg: `first name cannot be blank and must be at least 3 characters long`,
+      customStatus: 400,
+    });
+  }
+  if (last_name.length < 2) {
+    return Promise.reject({
+      msg: `last name cannot be blank and must be at least 3 characters long`,
       customStatus: 400,
     });
   }
@@ -40,4 +58,5 @@ const createUser = (
       });
   });
 };
+
 module.exports = createUser;

@@ -189,7 +189,9 @@ describe("Post - create a new unique user:", () => {
       .send(newUser)
       .expect(400)
       .then(({ body }) => {
-      expect(body.msg).toBe("username must be at least 3 characters long");
+        expect(body.msg).toBe(
+          "username cannot be blank and must be at least 3 characters long"
+        );
       });
   });
 
@@ -208,7 +210,9 @@ describe("Post - create a new unique user:", () => {
       .send(newUser)
       .expect(400)
       .then(({ body }) => {
-      expect(body.msg).toBe("username must be at least 3 characters long");
+        expect(body.msg).toBe(
+          "password cannot be blank and must be at least 3 characters long"
+        );
       });
   });
 });
@@ -217,7 +221,8 @@ describe("Post - create a new user idea:", () => {
     const testUserIdea = {
       username: "test",
       location: "test",
-      description: "test",
+      description:
+        "test is something that is very important in coding and ensures good quality code and best practice. It reduces bugs but increases development time",
       date_type: "test",
       price: 0.0,
       latitude: 54.8957,
@@ -242,6 +247,28 @@ describe("Post - create a new user idea:", () => {
         expect(body).toHaveProperty("opening_time", expect.any(String));
         expect(body).toHaveProperty("closing_time", expect.any(String));
         expect(body).toHaveProperty("img", expect.any(String));
+      });
+  });
+
+  test("Should respond with status 400, when a user is trying to create a date idea but does not fill the necessary fields", () => {
+    const testUserIdea = {
+      username: "test",
+      location: "",
+      description: "test",
+      date_type: "test",
+      price: 0.0,
+      latitude: 54.8957,
+      longitude: 45.345,
+      opening_time: "00:00",
+      closing_time: "00:00",
+      img: "url",
+    };
+    return request(app)
+      .post("/api/user_ideas")
+      .send(testUserIdea)
+      .expect(400)
+      .then(({ body }) => {
+        expect(body.msg).toBe("location cannot be blank");
       });
   });
 });
