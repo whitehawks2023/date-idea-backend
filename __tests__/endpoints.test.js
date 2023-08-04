@@ -12,9 +12,13 @@ describe("GET - All users:", () => {
       .then(({ body }) => {
         body.users.forEach((user) => {
           expect(user).toHaveProperty("_id", expect.any(String));
+          expect(user).toHaveProperty("username", expect.any(String));
+          expect(user).toHaveProperty("password", expect.any(String));
           expect(user).toHaveProperty("first_name", expect.any(String));
           expect(user).toHaveProperty("last_name", expect.any(String));
           expect(user).toHaveProperty("age", expect.any(Number));
+          expect(user).toHaveProperty("email", expect.any(String));
+          expect(user).toHaveProperty("avatar", expect.any(String));
         });
       });
   });
@@ -46,8 +50,6 @@ describe("GET - Specific user information", () => {
         expect(body).toHaveProperty("age", expect.any(Number));
         expect(body).toHaveProperty("email", expect.any(String));
         expect(body).toHaveProperty("avatar", expect.any(String));
-
-
       });
   });
 
@@ -125,18 +127,25 @@ describe("GET /api/user_ideas/:_id", () => {
         expect(body).toHaveProperty("img", expect.any(String));
       });
   });
-});
 
-// describe('GET /api/articles/:article_id/comments', () => {
-//   test("Should respond with 404 Not found for an article_id that does not exist", () => {
-//     return request(app)
-//       .get('/api/articles/76/comments')
-//       .expect(404)
-//       .then(({ body }) => {
-//         expect(body.msg).toBe('Not found')
-//       });
-//       });
-// });
+  test("Should respond with 404 Not found for a idea id that does not exist", () => {
+    return request(app)
+      .get("/api/users/64cbad8d6b10fda44f0322323115345")
+      .expect(404)
+      .then(({ body }) => {
+        expect(body.msg).toBe("Not found");
+      });
+  });
+
+  test("Should respond with 400 Bad request for an invalid idea id", () => {
+    return request(app)
+      .get("/api/users/%$£££78hfgdb")
+      .expect(400)
+      .then(({ body }) => {
+        expect(body.msg).toBe("Bad request");
+      });
+  });
+});
 
 describe("Post - create a new unique user:", () => {
   test("201: Responds with created unique user:", () => {
@@ -162,6 +171,44 @@ describe("Post - create a new unique user:", () => {
         expect(body).toHaveProperty("email", expect.any(String));
         expect(body).toHaveProperty("age", expect.any(Number));
         expect(body).toHaveProperty("avatar", expect.any(String));
+      });
+  });
+
+  test("Should respond with status 400, when a user is trying to sign up but leaves username blank", () => {
+    const newUser = {
+      username: "",
+      password: "heymatey",
+      first_name: "martin",
+      last_name: "odegaard",
+      email: "mg1@gmail.com",
+      age: 21,
+      avatar: "https://arsenalarehorrible.com",
+    };
+    return request(app)
+      .post("/api/users")
+      .send(newUser)
+      .expect(400)
+      .then(({ body }) => {
+      expect(body.msg).toBe("username must be at least 3 characters long");
+      });
+  });
+
+  test("Should respond with status 400, when a user is trying to sign up but leaves password blank", () => {
+    const newUser = {
+      username: "ronaldo",
+      password: "",
+      first_name: "martin",
+      last_name: "odegaard",
+      email: "mg1@gmail.com",
+      age: 21,
+      avatar: "https://arsenalarehorrible.com",
+    };
+    return request(app)
+      .post("/api/users")
+      .send(newUser)
+      .expect(400)
+      .then(({ body }) => {
+      expect(body.msg).toBe("username must be at least 3 characters long");
       });
   });
 });

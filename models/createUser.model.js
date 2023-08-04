@@ -11,11 +11,18 @@ const createUser = (
   age,
   avatar
 ) => {
+  if (username.length < 3 || password.length < 3) {
+    return Promise.reject({
+      msg: "username must be at least 3 characters long",
+      customStatus: 400,
+    });
+  }
+
   return checkUserExists(username).then((usernameExist) => {
     if (usernameExist) {
       return Promise.reject({
         msg: "username is already taken",
-        status: 403,
+        customStatus: 403,
       });
     }
     return user
