@@ -35,6 +35,7 @@ describe("GET - All ideas sorted by search(queries)", () => {
           expect(idea).toHaveProperty("username", expect.any(String));
           expect(idea).toHaveProperty("title", expect.any(String));
           expect(idea).toHaveProperty("location", expect.any(String));
+          expect(idea).toHaveProperty("address", expect.any(String));
           expect(idea).toHaveProperty("description", expect.any(String));
           expect(idea).toHaveProperty("type", expect.any(String));
           expect(idea).toHaveProperty("price", expect.any(Number));
@@ -55,6 +56,7 @@ describe("GET - All ideas sorted by search(queries)", () => {
           expect(idea).toHaveProperty("username", expect.any(String));
           expect(idea).toHaveProperty("title", expect.any(String));
           expect(idea).toHaveProperty("location", expect.any(String));
+          expect(idea).toHaveProperty("address", expect.any(String));
           expect(idea).toHaveProperty("description", expect.any(String));
           expect(idea).toHaveProperty("type", expect.any(String));
           expect(idea).toHaveProperty("price", expect.any(Number));
@@ -75,6 +77,7 @@ describe("GET - All ideas sorted by search(queries)", () => {
           expect(idea).toHaveProperty("username", expect.any(String));
           expect(idea).toHaveProperty("title", expect.any(String));
           expect(idea).toHaveProperty("location", expect.any(String));
+          expect(idea).toHaveProperty("address", expect.any(String));
           expect(idea).toHaveProperty("description", expect.any(String));
           expect(idea).toHaveProperty("type", expect.any(String));
           expect(idea).toHaveProperty("price", expect.any(Number));
@@ -95,6 +98,7 @@ describe("GET - All ideas sorted by search(queries)", () => {
           expect(idea).toHaveProperty("username", expect.any(String));
           expect(idea).toHaveProperty("title", expect.any(String));
           expect(idea).toHaveProperty("location", expect.any(String));
+          expect(idea).toHaveProperty("address", expect.any(String));
           expect(idea).toHaveProperty("description", expect.any(String));
           expect(idea).toHaveProperty("type", expect.any(String));
           expect(idea).toHaveProperty("price", expect.any(Number));
@@ -115,6 +119,7 @@ describe("GET - All ideas sorted by search(queries)", () => {
           expect(idea).toHaveProperty("username", expect.any(String));
           expect(idea).toHaveProperty("title", expect.any(String));
           expect(idea).toHaveProperty("location", expect.any(String));
+          expect(idea).toHaveProperty("address", expect.any(String));
           expect(idea).toHaveProperty("description", expect.any(String));
           expect(idea).toHaveProperty("type", expect.any(String));
           expect(idea).toHaveProperty("price", expect.any(Number));
@@ -203,6 +208,7 @@ describe("GET - All user_ideas:", () => {
           expect(idea).toHaveProperty("username", expect.any(String));
           expect(idea).toHaveProperty("title", expect.any(String));
           expect(idea).toHaveProperty("location", expect.any(String));
+          expect(idea).toHaveProperty("address", expect.any(String));
           expect(idea).toHaveProperty("description", expect.any(String));
           expect(idea).toHaveProperty("type", expect.any(String));
           expect(idea).toHaveProperty("price", expect.any(Number));
@@ -224,6 +230,7 @@ describe("GET /api/user_ideas/:_id", () => {
         expect(body).toHaveProperty("username", expect.any(String));
         expect(body).toHaveProperty("title", expect.any(String));
         expect(body).toHaveProperty("location", expect.any(String));
+        expect(body).toHaveProperty("address", expect.any(String));
         expect(body).toHaveProperty("description", expect.any(String));
         expect(body).toHaveProperty("type", expect.any(String));
         expect(body).toHaveProperty("price", expect.any(Number));
@@ -327,6 +334,7 @@ describe("Post - create a new user idea:", () => {
       username: "br15",
       title: "test",
       location: "night",
+      address: "Henley street 113",
       description:
         "test is something that is very important in coding and ensures good quality code and best practice. It reduces bugs but increases development time",
       type: "test",
@@ -345,6 +353,7 @@ describe("Post - create a new user idea:", () => {
         expect(body).toHaveProperty("_id", expect.any(String));
         expect(body).toHaveProperty("username", expect.any(String));
         expect(body).toHaveProperty("location", expect.any(String));
+        expect(body).toHaveProperty("address", expect.any(String));
         expect(body).toHaveProperty("description", expect.any(String));
         expect(body).toHaveProperty("type", expect.any(String));
         expect(body).toHaveProperty("price", expect.any(Number));
@@ -361,6 +370,7 @@ describe("Post - create a new user idea:", () => {
       username: "br15",
       title: "test",
       location: "",
+      address: "Henley street replublic",
       description: "test",
       type: "test",
       price: 0.0,
@@ -464,6 +474,7 @@ describe("PATCH - updates the user's idea:", () => {
   test("200: Responds with updated user idea object when all fields are changed", () => {
     const userPatch = {
       location: "test200",
+      address: "henly bold street",
       description: "test200",
       type: "test200",
       price: 0.2,

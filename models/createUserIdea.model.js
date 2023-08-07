@@ -5,6 +5,7 @@ const createUserIdea = (
   username,
   title,
   location,
+  address,
   description,
   type,
   price,
@@ -38,7 +39,7 @@ const createUserIdea = (
       customStatus: 400,
     });
   }
-  if (typeof longitude !== 'number' || typeof latitude !== 'number') {
+  if (typeof longitude !== "number" || typeof latitude !== "number") {
     return Promise.reject({
       msg: `longitude and latitude must be a number`,
       customStatus: 400,
@@ -62,6 +63,7 @@ const createUserIdea = (
       username,
       title,
       location,
+      address,
       description,
       type,
       price,
