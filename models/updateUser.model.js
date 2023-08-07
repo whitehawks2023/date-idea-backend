@@ -23,24 +23,3 @@ const updateUser = (username, first_name, last_name, email, avatar) => {
       return updatedUser;
     });
 };
-
-// module.exports = updateUser;
-
-// NEW UPDATE PASSWORD
-// const { user } = require("./selectUsers.model");
-
-// const updateUser = (password) => {
-//   const detailsObj = {};
-
-//   if (password !== undefined) {
-//     detailsObj.password = password;
-//   }
-
-//   return user
-//     .updateOne({ username: username }, detailsObj)
-//     .then((updatedUser) => {
-//       return updatedUser;
-//     });
-// };
-
-// module.exports = updateUser;

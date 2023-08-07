@@ -14,20 +14,3 @@ const patchUser = (req, res, next) => {
 };
 
 module.exports = patchUser;
-
-// NEW TO UPDATE PASSWORD
-// const updateUser = require("../models/updateUser.model");
-
-// const patchUser = (req, res, next) => {
-//   const { username } = req.params;
-//   const { password } = req.body;
-//   updateUser(password)
-//     .then((updatedUser) => {
-//       res.status(200).json(updatedUser);
-//     })
-//     .catch((err) => {
-//       next(err);
-//     });
-// };
-
-// module.exports = patchUser;
