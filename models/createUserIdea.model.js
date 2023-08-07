@@ -5,7 +5,7 @@ const createUserIdea = (
   username,
   location,
   description,
-  date_type,
+  type,
   price,
   latitude,
   longitude,
@@ -25,7 +25,7 @@ const createUserIdea = (
       customStatus: 400,
     });
   }
-  if (date_type.length === 0) {
+  if (type.length === 0) {
     return Promise.reject({
       msg: `Date type cannot be blank`,
       customStatus: 400,
@@ -61,7 +61,7 @@ const createUserIdea = (
       username,
       location,
       description,
-      date_type,
+      type,
       price,
       latitude,
       longitude,

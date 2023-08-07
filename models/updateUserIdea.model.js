@@ -1,13 +1,13 @@
 const { userIdeas } = require("./selectUserIdeas.model");
 
-const updateUserIdea = (_id, location, date_type, price, opening_time, closing_time, img) => {
+const updateUserIdea = (_id, location, type, price, opening_time, closing_time, img) => {
   const detailsObj = {};
 
   if (location !== undefined) {
     detailsObj.location = location;
   }
-  if (date_type !== undefined) {
-    detailsObj.date_type = date_type;
+  if (type !== undefined) {
+    detailsObj.type = type;
   }
   if (price !== undefined) {
     detailsObj.price = price;

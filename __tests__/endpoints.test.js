@@ -35,7 +35,7 @@ describe("GET - All ideas sorted by search(queries)", () => {
           expect(idea).toHaveProperty("username", expect.any(String));
           expect(idea).toHaveProperty("location", expect.any(String));
           expect(idea).toHaveProperty("description", expect.any(String));
-          expect(idea).toHaveProperty("date_type", expect.any(String));
+          expect(idea).toHaveProperty("type", expect.any(String));
           expect(idea).toHaveProperty("price", expect.any(Number));
           expect(idea).toHaveProperty("opening_time", expect.any(String));
           expect(idea).toHaveProperty("closing_time", expect.any(String));
@@ -54,7 +54,7 @@ describe("GET - All ideas sorted by search(queries)", () => {
           expect(idea).toHaveProperty("username", expect.any(String));
           expect(idea).toHaveProperty("location", expect.any(String));
           expect(idea).toHaveProperty("description", expect.any(String));
-          expect(idea).toHaveProperty("date_type", expect.any(String));
+          expect(idea).toHaveProperty("type", expect.any(String));
           expect(idea).toHaveProperty("price", expect.any(Number));
           expect(idea).toHaveProperty("opening_time", expect.any(String));
           expect(idea).toHaveProperty("closing_time", expect.any(String));
@@ -73,7 +73,7 @@ describe("GET - All ideas sorted by search(queries)", () => {
           expect(idea).toHaveProperty("username", expect.any(String));
           expect(idea).toHaveProperty("location", expect.any(String));
           expect(idea).toHaveProperty("description", expect.any(String));
-          expect(idea).toHaveProperty("date_type", expect.any(String));
+          expect(idea).toHaveProperty("type", expect.any(String));
           expect(idea).toHaveProperty("price", expect.any(Number));
           expect(idea).toHaveProperty("opening_time", expect.any(String));
           expect(idea).toHaveProperty("closing_time", expect.any(String));
@@ -92,7 +92,7 @@ describe("GET - All ideas sorted by search(queries)", () => {
           expect(idea).toHaveProperty("username", expect.any(String));
           expect(idea).toHaveProperty("location", expect.any(String));
           expect(idea).toHaveProperty("description", expect.any(String));
-          expect(idea).toHaveProperty("date_type", expect.any(String));
+          expect(idea).toHaveProperty("type", expect.any(String));
           expect(idea).toHaveProperty("price", expect.any(Number));
           expect(idea).toHaveProperty("opening_time", expect.any(String));
           expect(idea).toHaveProperty("closing_time", expect.any(String));
@@ -103,7 +103,7 @@ describe("GET - All ideas sorted by search(queries)", () => {
   });
   test("200: Responds with ideas sorted by date type asc when order is set to asc and sort by is set to date type", () => {
     return request(app)
-      .get("/api/search/?sort_by=date_type&order=asc")
+      .get("/api/search/?sort_by=type&order=asc")
       .expect(200)
       .then(({ body }) => {
         body.forEach((idea) => {
@@ -111,12 +111,12 @@ describe("GET - All ideas sorted by search(queries)", () => {
           expect(idea).toHaveProperty("username", expect.any(String));
           expect(idea).toHaveProperty("location", expect.any(String));
           expect(idea).toHaveProperty("description", expect.any(String));
-          expect(idea).toHaveProperty("date_type", expect.any(String));
+          expect(idea).toHaveProperty("type", expect.any(String));
           expect(idea).toHaveProperty("price", expect.any(Number));
           expect(idea).toHaveProperty("opening_time", expect.any(String));
           expect(idea).toHaveProperty("closing_time", expect.any(String));
           expect(idea).toHaveProperty("img", expect.any(String));
-          expect(body).toBeSorted({ key: "date_type", ascending: true });
+          expect(body).toBeSorted({ key: "type", ascending: true });
         });
       });
   });
@@ -198,7 +198,7 @@ describe("GET - All user_ideas:", () => {
           expect(idea).toHaveProperty("username", expect.any(String));
           expect(idea).toHaveProperty("location", expect.any(String));
           expect(idea).toHaveProperty("description", expect.any(String));
-          expect(idea).toHaveProperty("date_type", expect.any(String));
+          expect(idea).toHaveProperty("type", expect.any(String));
           expect(idea).toHaveProperty("price", expect.any(Number));
           expect(idea).toHaveProperty("opening_time", expect.any(String));
           expect(idea).toHaveProperty("closing_time", expect.any(String));
@@ -218,7 +218,7 @@ describe("GET /api/user_ideas/:_id", () => {
         expect(body).toHaveProperty("username", expect.any(String));
         expect(body).toHaveProperty("location", expect.any(String));
         expect(body).toHaveProperty("description", expect.any(String));
-        expect(body).toHaveProperty("date_type", expect.any(String));
+        expect(body).toHaveProperty("type", expect.any(String));
         expect(body).toHaveProperty("price", expect.any(Number));
         expect(body).toHaveProperty("opening_time", expect.any(String));
         expect(body).toHaveProperty("closing_time", expect.any(String));
@@ -321,7 +321,7 @@ describe("Post - create a new user idea:", () => {
       location: "night",
       description:
         "test is something that is very important in coding and ensures good quality code and best practice. It reduces bugs but increases development time",
-      date_type: "test",
+      type: "test",
       price: 0.0,
       latitude: 54.8957,
       longitude: 45.345,
@@ -338,7 +338,7 @@ describe("Post - create a new user idea:", () => {
         expect(body).toHaveProperty("username", expect.any(String));
         expect(body).toHaveProperty("location", expect.any(String));
         expect(body).toHaveProperty("description", expect.any(String));
-        expect(body).toHaveProperty("date_type", expect.any(String));
+        expect(body).toHaveProperty("type", expect.any(String));
         expect(body).toHaveProperty("price", expect.any(Number));
         expect(body).toHaveProperty("latitude", expect.any(Number));
         expect(body).toHaveProperty("longitude", expect.any(Number));
@@ -353,7 +353,7 @@ describe("Post - create a new user idea:", () => {
       username: "test",
       location: "",
       description: "test",
-      date_type: "test",
+      type: "test",
       price: 0.0,
       latitude: 54.8957,
       longitude: 45.345,
@@ -441,7 +441,7 @@ describe("PATCH - updates the user's idea:", () => {
     const userPatch = {
       location: "test200",
       description: "test200",
-      date_type: "test200",
+      type: "test200",
     };
     return request(app)
       .patch("/api/user_ideas/64cbad8d6b10fda44f035345")
@@ -456,7 +456,7 @@ describe("PATCH - updates the user's idea:", () => {
     const userPatch = {
       location: "test200",
       description: "test200",
-      date_type: "test200",
+      type: "test200",
       price: 0.2,
       opening_time: "00:02",
       closing_time: "00:02",

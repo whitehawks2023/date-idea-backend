@@ -5,7 +5,7 @@ const usersSchema = new mongoose.Schema(
     username: { type: String, required: true },
     location: { type: String, required: true },
     description: { type: String, required: true },
-    date_type: { type: String, required: true },
+    type: { type: String, required: true },
     price: { type: Number, required: true },
     longitude: { type: Number, required: true },
     latitude: { type: Number, required: true },

@@ -26,7 +26,6 @@ const updateUser = (
     detailsObj.password = password;
   }
 
-  console.log(detailsObj);
   return user
     .updateOne({ username: username }, detailsObj)
     .then((updatedUser) => {
