@@ -130,6 +130,48 @@ describe("GET - All ideas sorted by search(queries)", () => {
         });
       });
   });
+  test("200: Responds with specific location sorted by date type default desc", () => {
+    return request(app)
+      .get("/api/search?location=night&sort_by=price&order=asc")
+      .expect(200)
+      .then(({ body }) => {
+        body.forEach((idea) => {
+          expect(idea).toHaveProperty("_id", expect.any(String));
+          expect(idea).toHaveProperty("username", expect.any(String));
+          expect(idea).toHaveProperty("title", expect.any(String));
+          expect(idea).toHaveProperty("location", "night");
+          expect(idea).toHaveProperty("address", expect.any(String));
+          expect(idea).toHaveProperty("description", expect.any(String));
+          expect(idea).toHaveProperty("type", expect.any(String));
+          expect(idea).toHaveProperty("price", expect.any(Number));
+          expect(idea).toHaveProperty("opening_time", expect.any(String));
+          expect(idea).toHaveProperty("closing_time", expect.any(String));
+          expect(idea).toHaveProperty("image_url", expect.any(String));
+          expect(body).toBeSorted({ key: "type", descending: true });
+        });
+      });
+  });
+  test("200: Responds with specific location sorted by date type asc", () => {
+    return request(app)
+      .get("/api/search?location=night&sort_by=price&order=asc")
+      .expect(200)
+      .then(({ body }) => {
+        body.forEach((idea) => {
+          expect(idea).toHaveProperty("_id", expect.any(String));
+          expect(idea).toHaveProperty("username", expect.any(String));
+          expect(idea).toHaveProperty("title", expect.any(String));
+          expect(idea).toHaveProperty("location", "night");
+          expect(idea).toHaveProperty("address", expect.any(String));
+          expect(idea).toHaveProperty("description", expect.any(String));
+          expect(idea).toHaveProperty("type", expect.any(String));
+          expect(idea).toHaveProperty("price", expect.any(Number));
+          expect(idea).toHaveProperty("opening_time", expect.any(String));
+          expect(idea).toHaveProperty("closing_time", expect.any(String));
+          expect(idea).toHaveProperty("image_url", expect.any(String));
+          expect(body).toBeSorted({ key: "type", ascending: true });
+        });
+      });
+  });
 });
 
 describe("GET - Non existent route", () => {

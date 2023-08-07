@@ -1,6 +1,10 @@
 const { userIdeas } = require("./selectUserIdeas.model");
 
-const selectIdeaBySearchQuery = (sort_by = "location", order = "desc") => {
+const selectIdeaBySearchQuery = (
+  location = "",
+  sort_by = "location",
+  order = "desc"
+) => {
   let sortOrder;
   if (order === "desc") {
     sortOrder = -1;
@@ -9,10 +13,10 @@ const selectIdeaBySearchQuery = (sort_by = "location", order = "desc") => {
   }
 
   return userIdeas
-    .find({})
+    .find({ location: location })
     .sort({ [sort_by]: sortOrder })
     .then((sortedIdeas) => {
-      return sortedIdeas
+      return sortedIdeas;
     });
 };
 

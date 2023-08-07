@@ -1,8 +1,9 @@
 const selectIdeaBySearchQuery = require("../models/selectIdeaBySearchQuery.model");
 
 const getIdeaBySearchQuery = (req, res, next) => {
-    const { sort_by, order } = req.query;
-    selectIdeaBySearchQuery(sort_by, order).then((sortedIdeas) => {
+  const { location, sort_by, order } = req.query;
+  selectIdeaBySearchQuery(location, sort_by, order).then((sortedIdeas) => {
+      console.log(sortedIdeas)
     res.status(200).json(sortedIdeas);
   });
 };
