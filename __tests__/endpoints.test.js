@@ -33,13 +33,14 @@ describe("GET - All ideas sorted by search(queries)", () => {
         body.forEach((idea) => {
           expect(idea).toHaveProperty("_id", expect.any(String));
           expect(idea).toHaveProperty("username", expect.any(String));
+          expect(idea).toHaveProperty("title", expect.any(String));
           expect(idea).toHaveProperty("location", expect.any(String));
           expect(idea).toHaveProperty("description", expect.any(String));
           expect(idea).toHaveProperty("type", expect.any(String));
           expect(idea).toHaveProperty("price", expect.any(Number));
           expect(idea).toHaveProperty("opening_time", expect.any(String));
           expect(idea).toHaveProperty("closing_time", expect.any(String));
-          expect(idea).toHaveProperty("img", expect.any(String));
+          expect(idea).toHaveProperty("image_url", expect.any(String));
           expect(body).toBeSorted({ key: "price", descending: true });
         });
       });
@@ -52,13 +53,14 @@ describe("GET - All ideas sorted by search(queries)", () => {
         body.forEach((idea) => {
           expect(idea).toHaveProperty("_id", expect.any(String));
           expect(idea).toHaveProperty("username", expect.any(String));
+          expect(idea).toHaveProperty("title", expect.any(String));
           expect(idea).toHaveProperty("location", expect.any(String));
           expect(idea).toHaveProperty("description", expect.any(String));
           expect(idea).toHaveProperty("type", expect.any(String));
           expect(idea).toHaveProperty("price", expect.any(Number));
           expect(idea).toHaveProperty("opening_time", expect.any(String));
           expect(idea).toHaveProperty("closing_time", expect.any(String));
-          expect(idea).toHaveProperty("img", expect.any(String));
+          expect(idea).toHaveProperty("image_url", expect.any(String));
           expect(body).toBeSorted({ key: "price", ascending: true });
         });
       });
@@ -71,13 +73,14 @@ describe("GET - All ideas sorted by search(queries)", () => {
         body.forEach((idea) => {
           expect(idea).toHaveProperty("_id", expect.any(String));
           expect(idea).toHaveProperty("username", expect.any(String));
+          expect(idea).toHaveProperty("title", expect.any(String));
           expect(idea).toHaveProperty("location", expect.any(String));
           expect(idea).toHaveProperty("description", expect.any(String));
           expect(idea).toHaveProperty("type", expect.any(String));
           expect(idea).toHaveProperty("price", expect.any(Number));
           expect(idea).toHaveProperty("opening_time", expect.any(String));
           expect(idea).toHaveProperty("closing_time", expect.any(String));
-          expect(idea).toHaveProperty("img", expect.any(String));
+          expect(idea).toHaveProperty("image_url", expect.any(String));
           expect(body).toBeSorted({ key: "location", descending: true });
         });
       });
@@ -90,13 +93,14 @@ describe("GET - All ideas sorted by search(queries)", () => {
         body.forEach((idea) => {
           expect(idea).toHaveProperty("_id", expect.any(String));
           expect(idea).toHaveProperty("username", expect.any(String));
+          expect(idea).toHaveProperty("title", expect.any(String));
           expect(idea).toHaveProperty("location", expect.any(String));
           expect(idea).toHaveProperty("description", expect.any(String));
           expect(idea).toHaveProperty("type", expect.any(String));
           expect(idea).toHaveProperty("price", expect.any(Number));
           expect(idea).toHaveProperty("opening_time", expect.any(String));
           expect(idea).toHaveProperty("closing_time", expect.any(String));
-          expect(idea).toHaveProperty("img", expect.any(String));
+          expect(idea).toHaveProperty("image_url", expect.any(String));
           expect(body).toBeSorted({ key: "location", ascending: true });
         });
       });
@@ -109,13 +113,14 @@ describe("GET - All ideas sorted by search(queries)", () => {
         body.forEach((idea) => {
           expect(idea).toHaveProperty("_id", expect.any(String));
           expect(idea).toHaveProperty("username", expect.any(String));
+          expect(idea).toHaveProperty("title", expect.any(String));
           expect(idea).toHaveProperty("location", expect.any(String));
           expect(idea).toHaveProperty("description", expect.any(String));
           expect(idea).toHaveProperty("type", expect.any(String));
           expect(idea).toHaveProperty("price", expect.any(Number));
           expect(idea).toHaveProperty("opening_time", expect.any(String));
           expect(idea).toHaveProperty("closing_time", expect.any(String));
-          expect(idea).toHaveProperty("img", expect.any(String));
+          expect(idea).toHaveProperty("image_url", expect.any(String));
           expect(body).toBeSorted({ key: "type", ascending: true });
         });
       });
@@ -196,13 +201,14 @@ describe("GET - All user_ideas:", () => {
         body.ideas.forEach((idea) => {
           expect(idea).toHaveProperty("_id", expect.any(String));
           expect(idea).toHaveProperty("username", expect.any(String));
+          expect(idea).toHaveProperty("title", expect.any(String));
           expect(idea).toHaveProperty("location", expect.any(String));
           expect(idea).toHaveProperty("description", expect.any(String));
           expect(idea).toHaveProperty("type", expect.any(String));
           expect(idea).toHaveProperty("price", expect.any(Number));
           expect(idea).toHaveProperty("opening_time", expect.any(String));
           expect(idea).toHaveProperty("closing_time", expect.any(String));
-          expect(idea).toHaveProperty("img", expect.any(String));
+          expect(idea).toHaveProperty("image_url", expect.any(String));
         });
       });
   });
@@ -211,18 +217,19 @@ describe("GET - All user_ideas:", () => {
 describe("GET /api/user_ideas/:_id", () => {
   test("Should return idea that corresponds to a given idea id", () => {
     return request(app)
-      .get("/api/user_ideas/64cbad8d6b10fda44f035345")
+      .get("/api/user_ideas/64d0e990d0dbba528e4c0c05")
       .expect(200)
       .then(({ body }) => {
         expect(body).toHaveProperty("_id", expect.any(String));
         expect(body).toHaveProperty("username", expect.any(String));
+        expect(body).toHaveProperty("title", expect.any(String));
         expect(body).toHaveProperty("location", expect.any(String));
         expect(body).toHaveProperty("description", expect.any(String));
         expect(body).toHaveProperty("type", expect.any(String));
         expect(body).toHaveProperty("price", expect.any(Number));
         expect(body).toHaveProperty("opening_time", expect.any(String));
         expect(body).toHaveProperty("closing_time", expect.any(String));
-        expect(body).toHaveProperty("img", expect.any(String));
+        expect(body).toHaveProperty("image_url", expect.any(String));
       });
   });
 
@@ -317,7 +324,8 @@ describe("Post - create a new unique user:", () => {
 describe("Post - create a new user idea:", () => {
   test("201: Responds with created user Idea:", () => {
     const testUserIdea = {
-      username: "test",
+      username: "br15",
+      title: "test",
       location: "night",
       description:
         "test is something that is very important in coding and ensures good quality code and best practice. It reduces bugs but increases development time",
@@ -327,7 +335,7 @@ describe("Post - create a new user idea:", () => {
       longitude: 45.345,
       opening_time: "00:00",
       closing_time: "00:00",
-      img: "url",
+      image_url: "url",
     };
     return request(app)
       .post("/api/user_ideas")
@@ -344,13 +352,14 @@ describe("Post - create a new user idea:", () => {
         expect(body).toHaveProperty("longitude", expect.any(Number));
         expect(body).toHaveProperty("opening_time", expect.any(String));
         expect(body).toHaveProperty("closing_time", expect.any(String));
-        expect(body).toHaveProperty("img", expect.any(String));
+        expect(body).toHaveProperty("image_url", expect.any(String));
       });
   });
 
   test("Should respond with status 400, when a user is trying to create a date idea but does not fill the necessary fields", () => {
     const testUserIdea = {
-      username: "test",
+      username: "br15",
+      title: "test",
       location: "",
       description: "test",
       type: "test",
@@ -359,7 +368,7 @@ describe("Post - create a new user idea:", () => {
       longitude: 45.345,
       opening_time: "00:00",
       closing_time: "00:00",
-      img: "url",
+      image_url: "url",
     };
     return request(app)
       .post("/api/user_ideas")
@@ -391,7 +400,7 @@ describe("DELETE user_idea", () => {
   });
 });
 
-describe.only("PATCH - updates the user info:", () => {
+describe("PATCH - updates the user info:", () => {
   test("200: Responds with updated user object when only specified fields are changed", () => {
     const userPatch = {
       first_name: "litty",
@@ -406,7 +415,7 @@ describe.only("PATCH - updates the user info:", () => {
       });
   });
 
-  test.only("200: Responds with updated user object when password is changed", () => {
+  test("200: Responds with updated user object when password is changed", () => {
     const userPatch = {
       password: "pizzahut",
     };
@@ -460,7 +469,7 @@ describe("PATCH - updates the user's idea:", () => {
       price: 0.2,
       opening_time: "00:02",
       closing_time: "00:02",
-      img: "https://thisisatesturl.com",
+      image_url: "https://thisisatesturl.com",
     };
     return request(app)
       .patch("/api/user_ideas/64cbb729506422a470e61d34")

@@ -3,6 +3,7 @@ const createUserIdea = require("../models/createUserIdea.model");
 const postUserIdea = (req, res, next) => {
   const {
     username,
+    title,
     location,
     description,
     type,
@@ -11,10 +12,11 @@ const postUserIdea = (req, res, next) => {
     longitude,
     opening_time,
     closing_time,
-    img,
+    image_url,
   } = req.body;
   createUserIdea(
     username,
+    title,
     location,
     description,
     type,
@@ -23,7 +25,7 @@ const postUserIdea = (req, res, next) => {
     longitude,
     opening_time,
     closing_time,
-    img
+    image_url
   )
     .then((createdUserIdea) => {
       res.status(201).json(createdUserIdea);

@@ -1,6 +1,6 @@
 const { userIdeas } = require("./selectUserIdeas.model");
 
-const updateUserIdea = (_id, location, type, price, opening_time, closing_time, img) => {
+const updateUserIdea = (_id, location, type, price, opening_time, closing_time, image_url) => {
   const detailsObj = {};
 
   if (location !== undefined) {
@@ -18,8 +18,8 @@ const updateUserIdea = (_id, location, type, price, opening_time, closing_time, 
   if (closing_time !== undefined) {
     detailsObj.closing_time = closing_time;
   }
-  if (img !== undefined) {
-    detailsObj.img = img;
+  if (image_url !== undefined) {
+    detailsObj.image_url = image_url;
   }
   return userIdeas
     .updateOne({ _id: _id }, detailsObj)

@@ -3,6 +3,7 @@ const { userIdeas } = require("./selectUserIdeas.model.js");
 
 const createUserIdea = (
   username,
+  title,
   location,
   description,
   type,
@@ -11,7 +12,7 @@ const createUserIdea = (
   longitude,
   opening_time,
   closing_time,
-  img
+  image_url
 ) => {
   if (location.length === 0) {
     return Promise.reject({
@@ -49,9 +50,9 @@ const createUserIdea = (
       customStatus: 400,
     });
   }
-  if (img.length === 0) {
+  if (image_url.length === 0) {
     return Promise.reject({
-      msg: `Img cannot be blank`,
+      msg: `image_url cannot be blank`,
       customStatus: 400,
     });
   }
@@ -59,6 +60,7 @@ const createUserIdea = (
   return userIdeas
     .create({
       username,
+      title,
       location,
       description,
       type,
@@ -67,7 +69,7 @@ const createUserIdea = (
       longitude,
       opening_time,
       closing_time,
-      img,
+      image_url,
     })
     .then((response) => {
       return response;
