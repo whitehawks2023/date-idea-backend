@@ -1,7 +1,13 @@
-// ORIGINAL
 const { user } = require("./selectUsers.model");
 
-const updateUser = (username, first_name, last_name, email, avatar) => {
+const updateUser = (
+  username,
+  first_name,
+  last_name,
+  email,
+  avatar,
+  password
+) => {
   const detailsObj = {};
 
   if (first_name !== undefined) {
@@ -16,10 +22,16 @@ const updateUser = (username, first_name, last_name, email, avatar) => {
   if (avatar !== undefined) {
     detailsObj.avatar = avatar;
   }
+  if (password !== undefined) {
+    detailsObj.password = password;
+  }
 
+  console.log(detailsObj);
   return user
     .updateOne({ username: username }, detailsObj)
     .then((updatedUser) => {
       return updatedUser;
     });
 };
+
+module.exports = updateUser;

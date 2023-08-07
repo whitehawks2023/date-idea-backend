@@ -8,6 +8,9 @@ const removeUser = require("./controllers/removeUser.controller");
 const removeUserIdea = require("./controllers/removeUserIdea.controller");
 const patchUser = require("./controllers/patchUser.controller");
 const patchUserIdea = require("./controllers/patchUserIdea.controller");
+const getUserIdeasById = require("./controllers/getUserIdeaById.controller");
+const getUserById = require("./controllers/getUserById.controller");
+const getIdeaBySearchQuery = require("./controllers/getIdeaBySearchQuery.controller");
 
 const app = express();
 const db = require("./connection");
@@ -16,8 +19,6 @@ const {
   handleCustomErrors,
   handleServerErrors,
 } = require("./errorHandler");
-const getUserIdeasById = require("./controllers/getUserIdeaById.controller");
-const getUserById = require("./controllers/getUserById.controller");
 
 app.use(cors());
 app.use(express.json());
@@ -26,6 +27,7 @@ app.get("/api/users", getUser);
 app.get("/api/users/:_id/:password", getUserById);
 app.get("/api/user_ideas/:_id", getUserIdeasById);
 app.get("/api/user_ideas", getUserIdeas);
+app.get("/api/search", getIdeaBySearchQuery);
 
 app.post("/api/users", postUser);
 app.post("/api/user_ideas", postUserIdea);

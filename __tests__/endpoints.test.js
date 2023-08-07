@@ -24,6 +24,104 @@ describe("GET - All users:", () => {
   });
 });
 
+describe("GET - All ideas sorted by search(queries)", () => {
+  test("200: Responds with ideas sorted by price desc to asc", () => {
+    return request(app)
+      .get("/api/search?sort_by=price&order=desc")
+      .expect(200)
+      .then(({ body }) => {
+        body.forEach((idea) => {
+          expect(idea).toHaveProperty("_id", expect.any(String));
+          expect(idea).toHaveProperty("username", expect.any(String));
+          expect(idea).toHaveProperty("location", expect.any(String));
+          expect(idea).toHaveProperty("description", expect.any(String));
+          expect(idea).toHaveProperty("date_type", expect.any(String));
+          expect(idea).toHaveProperty("price", expect.any(Number));
+          expect(idea).toHaveProperty("opening_time", expect.any(String));
+          expect(idea).toHaveProperty("closing_time", expect.any(String));
+          expect(idea).toHaveProperty("img", expect.any(String));
+          expect(body).toBeSorted({ key: "price", descending: true });
+        });
+      });
+  });
+  test("200: Responds with ideas sorted by price asc to desc", () => {
+    return request(app)
+      .get("/api/search?sort_by=price&order=asc")
+      .expect(200)
+      .then(({ body }) => {
+        body.forEach((idea) => {
+          expect(idea).toHaveProperty("_id", expect.any(String));
+          expect(idea).toHaveProperty("username", expect.any(String));
+          expect(idea).toHaveProperty("location", expect.any(String));
+          expect(idea).toHaveProperty("description", expect.any(String));
+          expect(idea).toHaveProperty("date_type", expect.any(String));
+          expect(idea).toHaveProperty("price", expect.any(Number));
+          expect(idea).toHaveProperty("opening_time", expect.any(String));
+          expect(idea).toHaveProperty("closing_time", expect.any(String));
+          expect(idea).toHaveProperty("img", expect.any(String));
+          expect(body).toBeSorted({ key: "price", ascending: true });
+        });
+      });
+  });
+  test("200: Responds with ideas sorted by location desc as default when no queries are specified", () => {
+    return request(app)
+      .get("/api/search")
+      .expect(200)
+      .then(({ body }) => {
+        body.forEach((idea) => {
+          expect(idea).toHaveProperty("_id", expect.any(String));
+          expect(idea).toHaveProperty("username", expect.any(String));
+          expect(idea).toHaveProperty("location", expect.any(String));
+          expect(idea).toHaveProperty("description", expect.any(String));
+          expect(idea).toHaveProperty("date_type", expect.any(String));
+          expect(idea).toHaveProperty("price", expect.any(Number));
+          expect(idea).toHaveProperty("opening_time", expect.any(String));
+          expect(idea).toHaveProperty("closing_time", expect.any(String));
+          expect(idea).toHaveProperty("img", expect.any(String));
+          expect(body).toBeSorted({ key: "location", descending: true });
+        });
+      });
+  });
+  test("200: Responds with ideas sorted by location asc when order is set to asc and sort by is set to location", () => {
+    return request(app)
+      .get("/api/search/?sort_by=location&order=asc")
+      .expect(200)
+      .then(({ body }) => {
+        body.forEach((idea) => {
+          expect(idea).toHaveProperty("_id", expect.any(String));
+          expect(idea).toHaveProperty("username", expect.any(String));
+          expect(idea).toHaveProperty("location", expect.any(String));
+          expect(idea).toHaveProperty("description", expect.any(String));
+          expect(idea).toHaveProperty("date_type", expect.any(String));
+          expect(idea).toHaveProperty("price", expect.any(Number));
+          expect(idea).toHaveProperty("opening_time", expect.any(String));
+          expect(idea).toHaveProperty("closing_time", expect.any(String));
+          expect(idea).toHaveProperty("img", expect.any(String));
+          expect(body).toBeSorted({ key: "location", ascending: true });
+        });
+      });
+  });
+  test("200: Responds with ideas sorted by date type asc when order is set to asc and sort by is set to date type", () => {
+    return request(app)
+      .get("/api/search/?sort_by=date_type&order=asc")
+      .expect(200)
+      .then(({ body }) => {
+        body.forEach((idea) => {
+          expect(idea).toHaveProperty("_id", expect.any(String));
+          expect(idea).toHaveProperty("username", expect.any(String));
+          expect(idea).toHaveProperty("location", expect.any(String));
+          expect(idea).toHaveProperty("description", expect.any(String));
+          expect(idea).toHaveProperty("date_type", expect.any(String));
+          expect(idea).toHaveProperty("price", expect.any(Number));
+          expect(idea).toHaveProperty("opening_time", expect.any(String));
+          expect(idea).toHaveProperty("closing_time", expect.any(String));
+          expect(idea).toHaveProperty("img", expect.any(String));
+          expect(body).toBeSorted({ key: "date_type", ascending: true });
+        });
+      });
+  });
+});
+
 describe("GET - Non existent route", () => {
   test("Should return 404 Not found when given a non-existent route", () => {
     return request(app)
@@ -220,7 +318,7 @@ describe("Post - create a new user idea:", () => {
   test("201: Responds with created user Idea:", () => {
     const testUserIdea = {
       username: "test",
-      location: "test",
+      location: "night",
       description:
         "test is something that is very important in coding and ensures good quality code and best practice. It reduces bugs but increases development time",
       date_type: "test",
@@ -293,11 +391,24 @@ describe("DELETE user_idea", () => {
   });
 });
 
-describe("PATCH - updates the user info:", () => {
+describe.only("PATCH - updates the user info:", () => {
   test("200: Responds with updated user object when only specified fields are changed", () => {
     const userPatch = {
       first_name: "litty",
       last_name: "senior",
+    };
+    return request(app)
+      .patch("/api/users/br15")
+      .send(userPatch)
+      .expect(200)
+      .then(({ body }) => {
+        expect(body.acknowledged).toBe(true);
+      });
+  });
+
+  test.only("200: Responds with updated user object when password is changed", () => {
+    const userPatch = {
+      password: "pizzahut",
     };
     return request(app)
       .patch("/api/users/br15")
