@@ -47,6 +47,28 @@ describe("GET - All ideas sorted by search(queries)", () => {
         });
       });
   });
+  test.only("200: Responds with ideas sorted by createdAt order desc", () => {
+    return request(app)
+      .get("/api/search?sort_by=createdAt&order=desc")
+      .expect(200)
+      .then(({ body }) => {
+        body.forEach((idea) => {
+          expect(idea).toHaveProperty("_id", expect.any(String));
+          expect(idea).toHaveProperty("username", expect.any(String));
+          expect(idea).toHaveProperty("title", expect.any(String));
+          expect(idea).toHaveProperty("location", expect.any(String));
+          expect(idea).toHaveProperty("address", expect.any(String));
+          expect(idea).toHaveProperty("description", expect.any(String));
+          expect(idea).toHaveProperty("type", expect.any(String));
+          expect(idea).toHaveProperty("price", expect.any(Number));
+          expect(idea).toHaveProperty("opening_time", expect.any(String));
+          expect(idea).toHaveProperty("closing_time", expect.any(String));
+          expect(idea).toHaveProperty("image_url", expect.any(String));
+
+          expect(body).toBeSorted({ key: "createdAt", descending: true });
+        });
+      });
+  });
   test("200: Responds with ideas sorted by price asc to desc", () => {
     return request(app)
       .get("/api/search?sort_by=price&order=asc")

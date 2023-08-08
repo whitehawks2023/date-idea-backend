@@ -12,7 +12,6 @@ const selectIdeaBySearchQuery = (
     sortOrder = 1;
   }
 
-
   return userIdeas
     .find({ location: location })
     .sort({ [sort_by]: sortOrder })
