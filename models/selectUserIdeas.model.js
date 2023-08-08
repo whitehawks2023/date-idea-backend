@@ -15,7 +15,10 @@ const usersSchema = new mongoose.Schema(
     closing_time: { type: String, required: true },
     image_url: { type: String, required: true },
   },
-  { versionKey: false }
+  {
+    versionKey: false,
+    timestamps: true,
+  }
 );
 
 const userIdeas = mongoose.model("user_ideas", usersSchema);
@@ -27,7 +30,6 @@ const selectUserIdeas = (sort_by = "location", order = "desc") => {
   } else {
     sortOrder = 1;
   }
-
 
   return userIdeas
     .find({})
