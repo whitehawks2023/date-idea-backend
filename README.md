@@ -30,3 +30,14 @@ DELETE user idea: /api/user_ideas/:\_id
 
 PATCH user: /api/users/:username
 PATCH user idea: /api/user_ideas/:\_id
+
+Built using:
+
+JS,
+Express,
+MongoDB,
+node,
+jest,
+SuperTest
+
+Authors: Adil Jawaid, Joshua Marshall, Olivia Motevalli, Milosz Slezak, Zahraa Karim
