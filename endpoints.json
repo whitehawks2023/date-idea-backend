@@ -1,0 +1,277 @@
+{
+  "GET /api/users": {
+    "description": "serves an array of all users",
+    "queries": [],
+    "exampleResponse": {
+      "users": [
+        {
+          "_id": "64c8cbf732d7bc43afa068e5",
+          "age": 30,
+          "first_name": "Milosz",
+          "last_name": "Jupiter",
+          "username": "Milosz123",
+          "avatar": "url",
+          "email": "milosz@email.com",
+          "password": "dragonfruit"
+        },
+        {
+          "_id": "64c8cc7132d7bc43afa068e6",
+          "first_name": "Adil",
+          "last_name": "Mars",
+          "age": 25,
+          "username": "Adil123",
+          "avatar": "url",
+          "email": "adil@email.com",
+          "password": "pear"
+        },
+        {
+          "_id": "64c8cce332d7bc43afa068e7",
+          "first_name": "Zahraa",
+          "last_name": "Venus",
+          "age": 22,
+          "username": "Zahraa123",
+          "avatar": "url",
+          "email": "zahraa@email.com",
+          "password": "banana"
+        }
+      ]
+    }
+  },
+  "GET /api/users/:_id/:password": {
+    "description": "serves information of a user",
+    "queries": [],
+    "exampleResponse": {
+      "_id": "64c8cc7132d7bc43afa068e6",
+      "first_name": "Adil",
+      "last_name": "Mars",
+      "age": 25,
+      "username": "Adil123",
+      "avatar": "url",
+      "email": "adil@email.com",
+      "password": "pear"
+    }
+  },
+  "GET /api/user_ideas": {
+    "description": "retrieves an array of all user generated date ideas/events on the app",
+    "queries": [
+      "sort_by (optional - location, price, type defaults to location)",
+      "order (option defaults to desc) asc or desc"
+    ],
+    "exampleResponse": {
+      "_id": "64d1037f673962e4bc3c7d6e",
+      "username": "Milosz123",
+      "address": "94 Kensington High St, London W8 4SJ",
+      "title": "Jacuzzi",
+      "location": "Kensington and Chelsea",
+      "description": "From the outside Jacuzzi gives very little indication of the opulence and scale inside. Set out over four floors, the interiors merge lush, red banquettes and chairs with gold candlesticks and light fittings alongside white tablecloths, Italian art and fairy lights dotted throughout a veritable rainforest of greenery. If you’re looking for fancy restaurants in London that still have a bit of a sense of humour to them, Jacuzzi wouldn’t be a terrible place to start. Highlights include a Sicilian mezzanine on the third floor with a retractable roof and glitter ball disco toilets in the basement",
+      "type": "food",
+      "price": 80,
+      "longitude": -0.192693,
+      "latitude": 51.506106,
+      "opening_time": "12:00",
+      "closing_time": "22:15",
+      "image_url": "https://cdn.thenudge.com/wp-content/uploads/2022/12/Jacuzzi_main.jpeg.webp"
+    }
+  },
+  "GET /api/user_ideas/:_id": {
+    "description": "Retrieves user idea by idea id",
+    "queries": [],
+    "exampleResponse": {
+      "idea": {
+        "_id": "64ca7444c5b1a7d78439307f",
+        "title": "Glitterfest",
+        "location": "london",
+        "address": "Between the Bridges The Queen's Walk London SE1",
+        "type": "music",
+        "description": "Glitterfest is back! Our last party of the summer season at Between The Bridges! For one day only and we`ll be turning up the heat at our Glitterfest Summer Closing Party and bringing you festival vibes as we take Glitterfest to the next level. This is a mini festival with free glitter makeup, crazy confetti cannons, cocktails, street food, spectacular dancers & performers + non-stop vibes as our DJs play the hottest RNB, Hip Hop, Bashment & Garage 🎉🍹🔥",
+        "latitude": 51.50507,
+        "price": 22,
+        "image_url": "https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F480539629%2F3624457841%2F1%2Foriginal.20230329-152809?w=940&auto=format%2Ccompress&q=75&sharp=10&rect=0%2C0%2C2160%2C1080&s=c76b03b440039eb8bc767c142f39510c",
+        "opening_time": "14:00",
+        "closing_time": "21:00",
+        "username": "Milosz123",
+        "longitude": -0.11797
+      }
+    },
+    "GET /api/search": {
+      "description": "search events for a specific location and get an array of events back of that location",
+      "queries": [
+        "location (any city), sort_by (price, type), order (asc or desc) no queries defaults to location desc"
+      ],
+      "exampleResponse": [
+        {
+          "_id": "64ca7462c5b1a7d784393081",
+          "title": "Masicka",
+          "location": "manchester",
+          "address": "Bowlers Exhibition Centre Longbridge Road Stretford M17 1SN",
+          "type": "music",
+          "description": "Are you ready to immerse yourselves in an unforgettable, authentic dancehall music vibe? We are happy to invite you to the most anticipated reggae dancehall event of the year! Get ready to experience pure euphoria as we present Masicka in Manchester. This will be a spectacular concert event, featuring world-renowned entertainers and surprise guests. These live performances will leave you hungry for more! Save the date and prepare to be captivated by a diverse lineup of sensational performers. DJs Include: DJ Killa Filla - Hurricane Jermaine - Classique Sound - Bizzy Movements - Dj Deo - Dj Koko",
+          "latitude": 53.46936,
+          "price": 27.8,
+          "image_url": "https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F559278279%2F751930060973%2F1%2Foriginal.20230720-223606?h=2000&w=720&auto=format%2Ccompress&q=75&sharp=10&s=712a5f82c6afc2d34220f25f2215dd09",
+          "opening_time": "9:00",
+          "closing_time": "23:00",
+          "username": "Olivia123",
+          "longitude": -2.3314
+        },
+        {
+          "_id": "64ca7477c5b1a7d784393082",
+          "title": "Discos for Grown Ups pop-up 70s, 80s & 90s disco party",
+          "location": "manchester",
+          "address": "Lowther Pavilion Lowther Terrace Lytham Saint Annes FY8 5QQ",
+          "type": "music",
+          "description": "After our amazing sold out disco in April, we are bringing the legendary Discos for Grown ups back to the Lowther Pavilion on Saturday 9th September. Get glittered up for a feel good, fun and fabulous night of dancing with people your own age to the best ever 70s soul and disco, 80s pop and 90s dance anthems. Boogie the night away to dance floor classics from Donna Summer, Earth Wind and Fire, Chic, Human League, Sister Sledge, Billy Ocean, Black Box, Barry White, Odyssey, Chaka Khan, ABBA, Madonna, Robin S, Erasure, Bee Gees, Candi Staton, Faithless and many more...",
+          "latitude": 53.73558,
+          "price": 18,
+          "image_url": "https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F560907109%2F1015532863843%2F1%2Foriginal.20230724-145927?h=2000&w=720&auto=format%2Ccompress&q=75&sharp=10&s=316cf42439fe9c2794d2f705e3ce2d4e",
+          "opening_time": "16:00",
+          "closing_time": "03:00",
+          "username": "Joshua123",
+          "longitude": -2.97188
+        },
+        {
+          "_id": "64ca7578c5b1a7d784393092",
+          "title": "Lola Lo Manchester",
+          "location": "manchester",
+          "address": "Lola Lo Manchester, Arches 9 & 10, Whitworth West, M1 5LH",
+          "type": "music",
+          "description": "A tiki-tavern where raucous parties reign supreme, Lola Lo is Manchester club and party bar brimming with luscious cocktails, late-night cocktail artisans and dance floors. A 560 capacity venue containing three levels: a lower ground floor, a ground floor and a mezzanine, creating a multiple-tiered tiki paradise. With DJs playing in the evenings and through the night, exotic, beach-themed drinks and live entertainment, Lola Lo breathes a fresh vibrancy into the Deansgate Locks scene. Additional unique features such as a secret selfie room and a casual dining operation. Lola Lo Manchester has an exotic edge on the existing bars on the Locks.",
+          "latitude": 53.47479,
+          "price": 5.5,
+          "image_url": "https://static.designmynight.com/uploads/2018/05/170206_lolalo_manchester_012-optimised.jpg",
+          "opening_time": "17:00",
+          "closing_time": "03:00",
+          "username": "Adil123",
+          "longitude": -2.2488
+        }
+      ]
+    }
+  },
+  "POST /api/users/": {
+    "description": "create a new user on this endpoint",
+    "queries": [],
+    "requestBody": {
+      "properties": {
+        "username": {
+          "username": "madhat",
+          "password": "madhat123",
+          "first_name": "ryan",
+          "last_name": "garcia",
+          "email": "ryang2000@gmail.com",
+          "age": 23,
+          "avatar": "https://jkenfwfesajffn"
+        }
+      }
+    },
+    "exampleResponse": {
+      "username": "madhat",
+      "password": "madhat123",
+      "first_name": "ryan",
+      "last_name": "garcia",
+      "email": "ryang2000@gmail.com",
+      "age": 23,
+      "avatar": "https://jkenfwfesajffn"
+    }
+  },
+  "POST /api/user_ideas/": {
+    "description": "create a new user idea on this endpoint",
+    "queries": [],
+    "requestBody": {
+      "username": "madhat",
+      "title": "maldives sunny resort",
+      "location": "maldives",
+      "address": "Pine Street Hotel P12 7SL",
+      "description": "The Maldives, a tropical paradise nestled in the Indian Ocean, is a mesmerizing archipelago composed of 26 coral atolls and over 1,000 idyllic islands. Famous for its crystal-clear turquoise waters, pristine white-sand beaches, and luxurious overwater villas, the Maldives beckons travelers with its postcard-perfect beauty. A mecca for water enthusiasts, this enchanting destination offers exceptional snorkeling, scuba diving, and an abundance of marine life, including colorful coral reefs and exotic fish. Whether you seek a romantic escape, thrilling water adventures, or simply a serene retreat, the Maldives promises an unforgettable and indulgent experience in a picture-perfect tropical setting.",
+      "type": "sunny",
+      "price": 34,
+      "latitude": 54.8957,
+      "longitude": 45.345,
+      "opening_time": "00:00",
+      "closing_time": "00:00",
+      "image_url": "https://www.google.com"
+    },
+    "exampleResponse": {
+      "username": "madhat",
+      "title": "maldives sunny resort",
+      "location": "maldives",
+      "address": "Pine Street Hotel P12 7SL",
+      "description": "The Maldives, a tropical paradise nestled in the Indian Ocean, is a mesmerizing archipelago composed of 26 coral atolls and over 1,000 idyllic islands. Famous for its crystal-clear turquoise waters, pristine white-sand beaches, and luxurious overwater villas, the Maldives beckons travelers with its postcard-perfect beauty. A mecca for water enthusiasts, this enchanting destination offers exceptional snorkeling, scuba diving, and an abundance of marine life, including colorful coral reefs and exotic fish. Whether you seek a romantic escape, thrilling water adventures, or simply a serene retreat, the Maldives promises an unforgettable and indulgent experience in a picture-perfect tropical setting.",
+      "type": "sunny",
+      "price": 34,
+      "latitude": 54.8957,
+      "longitude": 45.345,
+      "opening_time": "00:00",
+      "closing_time": "00:00",
+      "image_url": "https://www.google.com"
+    }
+  },
+  "PATCH /api/users/:username": {
+    "description": "Updates a user details using their username",
+    "queries": [],
+    "requestBody": {
+      "properties": {
+        "details": {
+          "first_name": "bryan",
+          "last_name": "garcia",
+          "password": "madhat321"
+        }
+      },
+      "example": {
+        "first_name": "bryan",
+        "last_name": "garcia",
+        "password": "madhat321"
+      }
+    },
+    "exampleResponse": {
+      "username": "madhat",
+      "password": "madhat321",
+      "first_name": "bryan",
+      "last_name": "garcia",
+      "email": "ryang2000@gmail.com",
+      "age": 23,
+      "avatar": "https://jkenfwfesajffn"
+    }
+  },
+  "PATCH /api/user_ideas/:_id": {
+    "description": "Updates a user idea using the idea id",
+    "queries": [],
+    "requestBody": {
+      "properties": {
+        "details": {
+          "location": "Male",
+          "description": "The capital city of maldives with beautiful scenery and views, friendly people, and great food!",
+          "type": "sunny"
+        }
+      },
+      "example": {
+        "location": "Male",
+        "description": "The capital city of maldives with beautiful scenery, sunny resorts and views, friendly people, and great food!",
+        "type": "sunny"
+      }
+    },
+    "exampleResponse": {
+      "username": "madhat",
+      "title": "maldives sunny resort",
+      "location": "Male",
+      "address": "Pine Street Hotel P12 7SL",
+      "description": "The capital city of maldives with beautiful scenery, sunny resorts and views, friendly people, and great food!",
+      "type": "sunny",
+      "price": 34,
+      "latitude": 54.8957,
+      "longitude": 45.345,
+      "opening_time": "00:00",
+      "closing_time": "00:00",
+      "image_url": "https://www.google.com"
+    }
+  },
+  "DELETE /api/users/:username": {
+    "description": "Deletes the user by unique username",
+    "queries": [],
+    "exampleResponse": {}
+  },
+  "DELETE /api/user_ideas/:_id": {
+    "description": "Deletes a date idea by idea id",
+    "queries": [],
+    "exampleResponse": {}
+  }
+}
