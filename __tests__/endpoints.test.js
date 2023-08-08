@@ -42,6 +42,7 @@ describe("GET - All ideas sorted by search(queries)", () => {
           expect(idea).toHaveProperty("opening_time", expect.any(String));
           expect(idea).toHaveProperty("closing_time", expect.any(String));
           expect(idea).toHaveProperty("image_url", expect.any(String));
+
           expect(body).toBeSorted({ key: "price", descending: true });
         });
       });

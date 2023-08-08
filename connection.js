@@ -25,7 +25,7 @@ app.use(express.json());
 const config = {};
 if (ENV === "production") {
   config.connectionString = process.env.MONGO_URI;
-  config.max = 2;
+  config.max = 5;
 }
 
 module.exports = new Pool(config);
