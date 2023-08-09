@@ -2,15 +2,7 @@ const db = require("../connection.js");
 const { checkUserExists } = require("../utils/checkUserExists.js");
 const { user } = require("./selectUsers.model.js");
 
-const createUser = (
-  username,
-  password,
-  first_name,
-  last_name,
-  email,
-  age,
-  avatar
-) => {
+const createUser = (username, password, full_name, email) => {
   if (username.length < 3) {
     return Promise.reject({
       msg: `username cannot be blank and must be at least 3 characters long`,
@@ -23,15 +15,9 @@ const createUser = (
       customStatus: 400,
     });
   }
-  if (first_name.length < 3) {
+  if (full_name.length < 3) {
     return Promise.reject({
-      msg: `first name cannot be blank and must be at least 3 characters long`,
-      customStatus: 400,
-    });
-  }
-  if (last_name.length < 2) {
-    return Promise.reject({
-      msg: `last name cannot be blank and must be at least 3 characters long`,
+      msg: `full name cannot be blank and must be at least 3 characters long`,
       customStatus: 400,
     });
   }
@@ -47,11 +33,8 @@ const createUser = (
       .create({
         username,
         password,
-        first_name,
-        last_name,
+        full_name,
         email,
-        age,
-        avatar,
       })
       .then((response) => {
         return response;

@@ -19,11 +19,14 @@ GET all users: /api/users
 GET user by id: /api/users/\_id
 GET all user ideas: /api/user_ideas
 GET user idea by id: /api/user_ideas/\_id
+GET user favourites: /api/user/favourites/:_id (_id here represents the user's id)
+
 GET search events by locations: /api/search?location='your city' please refer to endpoints.json files for all
 valid sort_bys and orders
 
 POST new user: /api/users
 POST new user idea: /api/user_ideas
+POST favourite to users favourite section: /api/user_ideas/favourites/:user_id/:_id (_id here represents the idea id)
 
 DELETE user: /api/users/:username
 DELETE user idea: /api/user_ideas/:\_id

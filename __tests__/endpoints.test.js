@@ -14,11 +14,8 @@ describe("GET - All users:", () => {
           expect(user).toHaveProperty("_id", expect.any(String));
           expect(user).toHaveProperty("username", expect.any(String));
           expect(user).toHaveProperty("password", expect.any(String));
-          expect(user).toHaveProperty("first_name", expect.any(String));
-          expect(user).toHaveProperty("last_name", expect.any(String));
-          expect(user).toHaveProperty("age", expect.any(Number));
+          expect(user).toHaveProperty("full_name", expect.any(String));
           expect(user).toHaveProperty("email", expect.any(String));
-          expect(user).toHaveProperty("avatar", expect.any(String));
         });
       });
   });
@@ -196,11 +193,8 @@ describe("GET - Specific user information", () => {
         expect(body).toHaveProperty("_id", expect.any(String));
         expect(body).toHaveProperty("username", expect.any(String));
         expect(body).toHaveProperty("password", expect.any(String));
-        expect(body).toHaveProperty("first_name", expect.any(String));
-        expect(body).toHaveProperty("last_name", expect.any(String));
-        expect(body).toHaveProperty("age", expect.any(Number));
+        expect(body).toHaveProperty("full_name", expect.any(String));
         expect(body).toHaveProperty("email", expect.any(String));
-        expect(body).toHaveProperty("avatar", expect.any(String));
       });
   });
 
@@ -455,11 +449,8 @@ describe("Post - create a new unique user:", () => {
     const testUser = {
       username: "br13",
       password: "burgersarebetter",
-      first_name: "lit",
-      last_name: "piazza",
+      full_name: "lit piazza",
       email: "piazza@gmail.com",
-      age: 73,
-      avatar: "https://jkenfwfesajffn",
     };
     return request(app)
       .post("/api/users")
@@ -469,11 +460,8 @@ describe("Post - create a new unique user:", () => {
         expect(body).toHaveProperty("_id", expect.any(String));
         expect(body).toHaveProperty("username", expect.any(String));
         expect(body).toHaveProperty("password", expect.any(String));
-        expect(body).toHaveProperty("first_name", expect.any(String));
-        expect(body).toHaveProperty("last_name", expect.any(String));
+        expect(body).toHaveProperty("full_name", expect.any(String));
         expect(body).toHaveProperty("email", expect.any(String));
-        expect(body).toHaveProperty("age", expect.any(Number));
-        expect(body).toHaveProperty("avatar", expect.any(String));
       });
   });
 
@@ -481,11 +469,8 @@ describe("Post - create a new unique user:", () => {
     const newUser = {
       username: "",
       password: "heymatey",
-      first_name: "martin",
-      last_name: "odegaard",
+      full_name: "martin odegaard",
       email: "mg1@gmail.com",
-      age: 21,
-      avatar: "https://arsenalarehorrible.com",
     };
     return request(app)
       .post("/api/users")
@@ -502,11 +487,8 @@ describe("Post - create a new unique user:", () => {
     const newUser = {
       username: "ronaldo",
       password: "",
-      first_name: "martin",
-      last_name: "odegaard",
+      full_name: "martin odegaard",
       email: "mg1@gmail.com",
-      age: 21,
-      avatar: "https://arsenalarehorrible.com",
     };
     return request(app)
       .post("/api/users")
@@ -604,8 +586,7 @@ describe("DELETE user_idea", () => {
 describe("PATCH - updates the user info:", () => {
   test("200: Responds with updated user object when only specified fields are changed", () => {
     const userPatch = {
-      first_name: "litty",
-      last_name: "senior",
+      full_name: "litty banana",
     };
     return request(app)
       .patch("/api/users/br15")
@@ -631,10 +612,8 @@ describe("PATCH - updates the user info:", () => {
 
   test("200: Responds with updated user object when all fields are changed", () => {
     const userPatch = {
-      first_name: "johnson",
-      last_name: "pizza",
+      full_name: "johnson burger",
       email: "pizzamama999@gmail.com",
-      avatar: "https://www.google.com",
     };
     return request(app)
       .patch("/api/users/br12")
