@@ -683,6 +683,189 @@ describe("PATCH - updates the user's idea:", () => {
   });
 });
 
+describe("POST - posts a date idea to favourites:", () => {
+  test("200: Responds with idea object when added to favourites", () => {
+    return request(app)
+      .post(
+        "/api/user_ideas/favourites/64ca63064fa62df6204f62fd/64d0eba2291ba2ee1a698b52"
+      )
+      .expect(200)
+      .then(({ body }) => {
+        body.favourites.forEach((favedIdea) => {
+          expect(favedIdea).toHaveProperty("_id", expect.any(String));
+          expect(favedIdea).toHaveProperty("username", expect.any(String));
+          expect(favedIdea).toHaveProperty("title", expect.any(String));
+          expect(favedIdea).toHaveProperty("location", expect.any(String));
+          expect(favedIdea).toHaveProperty("address", expect.any(String));
+          expect(favedIdea).toHaveProperty("description", expect.any(String));
+          expect(favedIdea).toHaveProperty("type", expect.any(String));
+          expect(favedIdea).toHaveProperty("price", expect.any(Number));
+          expect(favedIdea).toHaveProperty("opening_time", expect.any(String));
+          expect(favedIdea).toHaveProperty("closing_time", expect.any(String));
+          expect(favedIdea).toHaveProperty("image_url", expect.any(String));
+        });
+      });
+  });
+  test("200: Responds with all user favourite ideas ", () => {
+    return request(app)
+      .get("/api/user/favourites/64ca63064fa62df6204f62fd")
+      .expect(200)
+      .then(({ body }) => {
+        body.forEach((favedIdea) => {
+          expect(favedIdea).toHaveProperty("_id", expect.any(String));
+          expect(favedIdea).toHaveProperty("username", expect.any(String));
+          expect(favedIdea).toHaveProperty("title", expect.any(String));
+          expect(favedIdea).toHaveProperty("location", expect.any(String));
+          expect(favedIdea).toHaveProperty("address", expect.any(String));
+          expect(favedIdea).toHaveProperty("description", expect.any(String));
+          expect(favedIdea).toHaveProperty("type", expect.any(String));
+          expect(favedIdea).toHaveProperty("price", expect.any(Number));
+          expect(favedIdea).toHaveProperty("opening_time", expect.any(String));
+          expect(favedIdea).toHaveProperty("closing_time", expect.any(String));
+          expect(favedIdea).toHaveProperty("image_url", expect.any(String));
+        });
+      });
+  });
+  test("200: Responds with all user favourite ideas sorted by price in descending order ", () => {
+    return request(app)
+      .get(
+        "/api/user/favourites/64ca63064fa62df6204f62fd?sort_by=price&order=desc"
+      )
+      .expect(200)
+      .then(({ body }) => {
+        body.forEach((favedIdea) => {
+          expect(favedIdea).toHaveProperty("_id", expect.any(String));
+          expect(favedIdea).toHaveProperty("username", expect.any(String));
+          expect(favedIdea).toHaveProperty("title", expect.any(String));
+          expect(favedIdea).toHaveProperty("location", expect.any(String));
+          expect(favedIdea).toHaveProperty("address", expect.any(String));
+          expect(favedIdea).toHaveProperty("description", expect.any(String));
+          expect(favedIdea).toHaveProperty("type", expect.any(String));
+          expect(favedIdea).toHaveProperty("price", expect.any(Number));
+          expect(favedIdea).toHaveProperty("opening_time", expect.any(String));
+          expect(favedIdea).toHaveProperty("closing_time", expect.any(String));
+          expect(favedIdea).toHaveProperty("image_url", expect.any(String));
+        });
+        expect(body).toBeSorted({ key: "price", descending: true });
+      });
+  });
+  test("200: Responds with all user favourite ideas sorted by price in ascending order ", () => {
+    return request(app)
+      .get(
+        "/api/user/favourites/64ca63064fa62df6204f62fd?sort_by=price&order=desc"
+      )
+      .expect(200)
+      .then(({ body }) => {
+        body.forEach((favedIdea) => {
+          expect(favedIdea).toHaveProperty("_id", expect.any(String));
+          expect(favedIdea).toHaveProperty("username", expect.any(String));
+          expect(favedIdea).toHaveProperty("title", expect.any(String));
+          expect(favedIdea).toHaveProperty("location", expect.any(String));
+          expect(favedIdea).toHaveProperty("address", expect.any(String));
+          expect(favedIdea).toHaveProperty("description", expect.any(String));
+          expect(favedIdea).toHaveProperty("type", expect.any(String));
+          expect(favedIdea).toHaveProperty("price", expect.any(Number));
+          expect(favedIdea).toHaveProperty("opening_time", expect.any(String));
+          expect(favedIdea).toHaveProperty("closing_time", expect.any(String));
+          expect(favedIdea).toHaveProperty("image_url", expect.any(String));
+        });
+        expect(body).toBeSorted({ key: "price", ascending: true });
+      });
+  });
+  test("200: Responds with all user favourite ideas sorted by location in descending order ", () => {
+    return request(app)
+      .get(
+        "/api/user/favourites/64ca63064fa62df6204f62fd?sort_by=price&order=desc"
+      )
+      .expect(200)
+      .then(({ body }) => {
+        body.forEach((favedIdea) => {
+          expect(favedIdea).toHaveProperty("_id", expect.any(String));
+          expect(favedIdea).toHaveProperty("username", expect.any(String));
+          expect(favedIdea).toHaveProperty("title", expect.any(String));
+          expect(favedIdea).toHaveProperty("location", expect.any(String));
+          expect(favedIdea).toHaveProperty("address", expect.any(String));
+          expect(favedIdea).toHaveProperty("description", expect.any(String));
+          expect(favedIdea).toHaveProperty("type", expect.any(String));
+          expect(favedIdea).toHaveProperty("price", expect.any(Number));
+          expect(favedIdea).toHaveProperty("opening_time", expect.any(String));
+          expect(favedIdea).toHaveProperty("closing_time", expect.any(String));
+          expect(favedIdea).toHaveProperty("image_url", expect.any(String));
+        });
+        expect(body).toBeSorted({ key: "location", descending: true });
+      });
+  });
+  test("200: Responds with all user favourite ideas sorted by location in ascending order ", () => {
+    return request(app)
+      .get(
+        "/api/user/favourites/64ca63064fa62df6204f62fd?sort_by=price&order=desc"
+      )
+      .expect(200)
+      .then(({ body }) => {
+        body.forEach((favedIdea) => {
+          expect(favedIdea).toHaveProperty("_id", expect.any(String));
+          expect(favedIdea).toHaveProperty("username", expect.any(String));
+          expect(favedIdea).toHaveProperty("title", expect.any(String));
+          expect(favedIdea).toHaveProperty("location", expect.any(String));
+          expect(favedIdea).toHaveProperty("address", expect.any(String));
+          expect(favedIdea).toHaveProperty("description", expect.any(String));
+          expect(favedIdea).toHaveProperty("type", expect.any(String));
+          expect(favedIdea).toHaveProperty("price", expect.any(Number));
+          expect(favedIdea).toHaveProperty("opening_time", expect.any(String));
+          expect(favedIdea).toHaveProperty("closing_time", expect.any(String));
+          expect(favedIdea).toHaveProperty("image_url", expect.any(String));
+        });
+        expect(body).toBeSorted({ key: "location", ascending: true });
+      });
+  });
+  test("200: Responds with all user favourite ideas sorted by type in descending order ", () => {
+    return request(app)
+      .get(
+        "/api/user/favourites/64ca63064fa62df6204f62fd?sort_by=price&order=desc"
+      )
+      .expect(200)
+      .then(({ body }) => {
+        body.forEach((favedIdea) => {
+          expect(favedIdea).toHaveProperty("_id", expect.any(String));
+          expect(favedIdea).toHaveProperty("username", expect.any(String));
+          expect(favedIdea).toHaveProperty("title", expect.any(String));
+          expect(favedIdea).toHaveProperty("location", expect.any(String));
+          expect(favedIdea).toHaveProperty("address", expect.any(String));
+          expect(favedIdea).toHaveProperty("description", expect.any(String));
+          expect(favedIdea).toHaveProperty("type", expect.any(String));
+          expect(favedIdea).toHaveProperty("price", expect.any(Number));
+          expect(favedIdea).toHaveProperty("opening_time", expect.any(String));
+          expect(favedIdea).toHaveProperty("closing_time", expect.any(String));
+          expect(favedIdea).toHaveProperty("image_url", expect.any(String));
+        });
+        expect(body).toBeSorted({ key: "type", descending: true });
+      });
+  });
+  test("200: Responds with all user favourite ideas sorted by type in ascending order ", () => {
+    return request(app)
+      .get(
+        "/api/user/favourites/64ca63064fa62df6204f62fd?sort_by=price&order=desc"
+      )
+      .expect(200)
+      .then(({ body }) => {
+        body.forEach((favedIdea) => {
+          expect(favedIdea).toHaveProperty("_id", expect.any(String));
+          expect(favedIdea).toHaveProperty("username", expect.any(String));
+          expect(favedIdea).toHaveProperty("title", expect.any(String));
+          expect(favedIdea).toHaveProperty("location", expect.any(String));
+          expect(favedIdea).toHaveProperty("address", expect.any(String));
+          expect(favedIdea).toHaveProperty("description", expect.any(String));
+          expect(favedIdea).toHaveProperty("type", expect.any(String));
+          expect(favedIdea).toHaveProperty("price", expect.any(Number));
+          expect(favedIdea).toHaveProperty("opening_time", expect.any(String));
+          expect(favedIdea).toHaveProperty("closing_time", expect.any(String));
+          expect(favedIdea).toHaveProperty("image_url", expect.any(String));
+        });
+        expect(body).toBeSorted({ key: "type", ascending: true });
+      });
+  });
+});
+
 afterAll(() => {
   db.end();
 });

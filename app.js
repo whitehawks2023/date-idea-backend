@@ -19,6 +19,8 @@ const {
   handleCustomErrors,
   handleServerErrors,
 } = require("./errorHandler");
+const postUserFavouriteIdea = require("./controllers/postUserFavouriteIdea.controller");
+const getFavouritesByUserId = require("./controllers/getFavouritesByUserId.controller");
 
 app.use(cors());
 app.use(express.json());
@@ -28,9 +30,11 @@ app.get("/api/users/:_id/:password", getUserById);
 app.get("/api/user_ideas/:_id", getUserIdeasById);
 app.get("/api/user_ideas", getUserIdeas);
 app.get("/api/search", getIdeaBySearchQuery);
+app.get("/api/user/favourites/:_id", getFavouritesByUserId)
 
 app.post("/api/users", postUser);
 app.post("/api/user_ideas", postUserIdea);
+app.post("/api/user_ideas/favourites/:user_id/:_id", postUserFavouriteIdea);
 
 app.delete("/api/users/:username", removeUser);
 app.delete("/api/user_ideas/:_id", removeUserIdea);
